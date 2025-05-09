@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://buuith51diln3"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(1973, 1381)
+scale = Vector2(0.465145, 0.429912)
+color = Color(0, 0.0156863, 1, 0.505882)
+polygon = PackedVector2Array(2114, 539, 2712, 805, 2154, 1483, 1564, 1145, 1890, 619)
+
+[node name="Polygon2D3" type="Polygon2D" parent="."]
+position = Vector2(2086.56, 1191.46)
+scale = Vector2(0.507904, 0.596545)
+color = Color(1, 0.917647, 0.0313726, 0.505882)
+polygon = PackedVector2Array(2114, 539, 2712, 805, 2154, 1483, 1564, 1145, 1890, 619)
+
+[node name="Polygon2D2" type="Polygon2D" parent="."]
+position = Vector2(1702, 841)
+scale = Vector2(0.830514, 0.841675)
+color = Color(1, 0.0627451, 0.0666667, 0.494118)
+polygon = PackedVector2Array(2114, 539, 2712, 805, 2154, 1483, 1564, 1145, 1890, 619)
