@@ -45,3 +45,5 @@ position = Vector2(158, 550)
 
 [node name="Enemy7" parent="." instance=ExtResource("2_gl6un")]
 position = Vector2(491, 26)
+
+[node name="EnemyManager" type="Node" parent="."]

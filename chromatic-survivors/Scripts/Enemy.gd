@@ -17,13 +17,13 @@ extends CharacterBody2D
 @export var CURRENT_YELLOW : int 
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var player_direction = global_position.direction_to(player.global_position)
 	velocity = player_direction * speed
 	
 	move_and_slide()
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if MAX_BLUE > 0:
 		$Polygon2D.color.b = CURRENT_BLUE/MAX_BLUE
 	if MAX_YELLOW > 0:
