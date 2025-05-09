@@ -35,12 +35,14 @@ scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_gntrk")
 
 [node name="LineCone" type="Area2D" parent="LightRotate"]
+collision_layer = 0
+collision_mask = 2
 
 [node name="Polygon2D" type="CollisionPolygon2D" parent="LightRotate/LineCone"]
 position = Vector2(40, 0)
 polygon = PackedVector2Array(11, -1, 247, -78, 250, 77)
 
-[node name="Polygon2D2" type="Polygon2D" parent="LightRotate/LineCone"]
+[node name="LightColor" type="Polygon2D" parent="LightRotate/LineCone"]
 position = Vector2(40, 0)
 color = Color(1, 1, 1, 0.286275)
 polygon = PackedVector2Array(11, -1, 247, -78, 250, 77)

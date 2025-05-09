@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cghqp7uq7cafd"]
+[gd_scene load_steps=5 format=3 uid="uid://cghqp7uq7cafd"]
 
 [ext_resource type="PackedScene" uid="uid://ch76b74jwc7xw" path="res://Scenes/Player.tscn" id="1_iukft"]
 [ext_resource type="PackedScene" uid="uid://blo4tyvs8qm1g" path="res://Scenes/enemy.tscn" id="2_gl6un"]
 [ext_resource type="Script" uid="uid://dti232jsdohcf" path="res://Scripts/EnemyManager.gd" id="3_j5yw3"]
+[ext_resource type="Script" uid="uid://h1j801usuh4c" path="res://Scenes/WaveManager.gd" id="4_kldst"]
 
 [node name="Game" type="Node2D"]
 
@@ -23,3 +24,7 @@ position = Vector2(589, 301)
 script = ExtResource("3_j5yw3")
 enemy_scene = ExtResource("2_gl6un")
 player_path = NodePath("../Player")
+
+[node name="WaveManager" type="Node" parent="."]
+script = ExtResource("4_kldst")
+enemy_spawner_path = NodePath("../EnemyManager")
