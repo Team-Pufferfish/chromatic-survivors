@@ -24,16 +24,26 @@ func _physics_process(_delta: float) -> void:
 	
 	move_and_slide()
 	
-func deal_damage(colour: LightColour, amount: int) -> void:
+func deal_damage(colour: int, amount: int, source_direction: Vector2 = Vector2.ZERO) -> void:
+	var damaged := false
+	
 	match colour:
 		LightColour.RED:
-			CURRENT_RED = max(CURRENT_RED - amount, 0)
+			if CURRENT_RED > 0:
+				CURRENT_RED = max(CURRENT_RED - amount, 0)
+				damaged = true
 		LightColour.BLUE:
-			CURRENT_BLUE = max(CURRENT_BLUE - amount, 0)
+			if CURRENT_BLUE > 0:
+				CURRENT_BLUE = max(CURRENT_BLUE - amount, 0)
+				damaged = true
 		LightColour.YELLOW:
-			CURRENT_YELLOW = max(CURRENT_YELLOW - amount, 0)
+			if CURRENT_YELLOW > 0:
+				CURRENT_YELLOW = max(CURRENT_YELLOW - amount, 0)
+				damaged = true
+
+	if damaged and source_direction != Vector2.ZERO:
+		trigger_damage_particles(source_direction, colour)
 	
-	# Check if enemy is dead
 	if CURRENT_RED <= 0 and CURRENT_BLUE <= 0 and CURRENT_YELLOW <= 0:
 		queue_free()
 	
@@ -60,4 +70,20 @@ func get_color_from_stats() -> Color:
 	if has_yellow:
 		return Color.YELLOW
 	return Color.WHITE
+
+func set_particle_colour(colour: int) -> void:
+	match colour:
+		LightColour.RED:
+			$DamageParticles.modulate = Color.RED
+		LightColour.BLUE:
+			$DamageParticles.modulate = Color.BLUE
+		LightColour.YELLOW:
+			$DamageParticles.modulate = Color.YELLOW
 	
+func trigger_damage_particles(from_direction: Vector2, colour: int) -> void:
+	var particles = $DamageParticles
+	if particles:
+		var particle_direction = from_direction.normalized()
+		particles.rotation = particle_direction.angle()
+		set_particle_colour(colour)
+		particles.restart()

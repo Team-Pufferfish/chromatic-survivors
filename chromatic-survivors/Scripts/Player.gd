@@ -66,4 +66,5 @@ func _physics_process(delta: float) -> void:
 func apply_light_cone_damage() -> void:
 	var enemies_in_light_cone = $LightRotate/LineCone.get_overlapping_bodies()
 	for enemy in enemies_in_light_cone:
-		enemy.deal_damage(light_colour, light_damage_amount)  # Example damage amount
+		var to_enemy = enemy.global_position - global_position
+		enemy.deal_damage(light_colour, light_damage_amount,to_enemy)  # Example damage amount
