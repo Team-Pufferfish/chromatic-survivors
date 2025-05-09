@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://blo4tyvs8qm1g"]
+[gd_scene load_steps=5 format=3 uid="uid://blo4tyvs8qm1g"]
 
 [ext_resource type="Script" uid="uid://dm700m5ubkkes" path="res://Scripts/Enemy.gd" id="1_hghv2"]
+[ext_resource type="Script" path="res://ColorSquare.gd" id="2_1f0kj"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hghv2"]
 particle_flag_disable_z = true
@@ -8,6 +9,7 @@ spread = 30.0
 initial_velocity_min = 200.0
 initial_velocity_max = 200.0
 gravity = Vector3(0, 0, 0)
+scale_min = 5.0
 scale_max = 10.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ne65n"]
@@ -18,16 +20,16 @@ collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_hghv2")
 
+[node name="Graphic" type="Node2D" parent="."]
+scale = Vector2(64, 64)
+script = ExtResource("2_1f0kj")
+
 [node name="DamageParticles" type="GPUParticles2D" parent="."]
 emitting = false
 amount = 10
 lifetime = 0.5
 one_shot = true
 process_material = SubResource("ParticleProcessMaterial_hghv2")
-
-[node name="Polygon2D" type="Polygon2D" parent="."]
-position = Vector2(1, -1)
-polygon = PackedVector2Array(18, -45, 23, -26, 43, 31, -40, 33, -24, -25, -17, -46, -15, -29, 10, -29)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ne65n")

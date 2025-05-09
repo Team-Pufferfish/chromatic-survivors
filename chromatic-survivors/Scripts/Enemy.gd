@@ -6,17 +6,17 @@ enum LightColour {RED, BLUE, YELLOW}
 
 @export var speed : int = 75
 
-@export var MAX_BLUE : int 
-@export var CURRENT_BLUE : int 
+@export var MAX_BLUE : float 
+@export var CURRENT_BLUE : float 
 
-@export var MAX_RED : int 
-@export var CURRENT_RED : int 
+@export var MAX_RED : float 
+@export var CURRENT_RED : float 
 
 ##@export var MAX_GREEN : int 
 #@export var CURRENT_GREEN : int 
 
-@export var MAX_YELLOW : int 
-@export var CURRENT_YELLOW : int 
+@export var MAX_YELLOW : float 
+@export var CURRENT_YELLOW : float 
 
 func _physics_process(_delta: float) -> void:
 	var player_direction = global_position.direction_to(player.global_position)
@@ -48,7 +48,10 @@ func deal_damage(colour: int, amount: int, source_direction: Vector2 = Vector2.Z
 		queue_free()
 	
 func _process(_delta: float) -> void:
-	$Polygon2D.color = get_color_from_stats()
+	$Graphic.yellow_value = CURRENT_YELLOW / max(MAX_YELLOW,1)
+	$Graphic.blue_value = CURRENT_BLUE / max(MAX_BLUE,1)
+	$Graphic.red_value = CURRENT_RED / max(MAX_RED,1)
+	#$Polygon2D.color = get_color_from_stats()
 
 func get_color_from_stats() -> Color:
 	var has_red = MAX_RED > 0
