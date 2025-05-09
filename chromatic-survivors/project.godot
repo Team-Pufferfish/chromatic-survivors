@@ -11,9 +11,15 @@ config_version=5
 [application]
 
 config/name="Chromatic Survivors"
+run/main_scene="uid://bnkv1imuw354x"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
+
+[display]
+
+window/stretch/mode="canvas_items"
 
 [rendering]
 
 renderer/rendering_method="mobile"
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
