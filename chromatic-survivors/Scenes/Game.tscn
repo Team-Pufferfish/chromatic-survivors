@@ -1,12 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://cghqp7uq7cafd"]
+[gd_scene load_steps=4 format=3 uid="uid://cghqp7uq7cafd"]
 
 [ext_resource type="PackedScene" uid="uid://ch76b74jwc7xw" path="res://Scenes/Player.tscn" id="1_iukft"]
 [ext_resource type="PackedScene" uid="uid://blo4tyvs8qm1g" path="res://Scenes/enemy.tscn" id="2_gl6un"]
+[ext_resource type="Script" uid="uid://dti232jsdohcf" path="res://Scripts/EnemyManager.gd" id="3_j5yw3"]
 
 [node name="Game" type="Node2D"]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(589, 301)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -50
@@ -19,31 +17,9 @@ color = Color(0.531051, 0.531051, 0.531051, 1)
 [node name="Player" parent="." instance=ExtResource("1_iukft")]
 position = Vector2(589, 301)
 
-[node name="Enemy" parent="." instance=ExtResource("2_gl6un")]
-position = Vector2(143, 170)
+[node name="Camera2D" type="Camera2D" parent="Player"]
 
-[node name="TestRed" parent="." instance=ExtResource("2_gl6un")]
-position = Vector2(559, 560)
-MAX_RED = 100
-CURRENT_RED = 50
-
-[node name="TestBlue" parent="." instance=ExtResource("2_gl6un")]
-position = Vector2(932, 491)
-MAX_BLUE = 100
-CURRENT_BLUE = 50
-
-[node name="TestYelllowGreen" parent="." instance=ExtResource("2_gl6un")]
-position = Vector2(1032, 237)
-MAX_YELLOW = 100
-CURRENT_YELLOW = 50
-
-[node name="Enemy5" parent="." instance=ExtResource("2_gl6un")]
-position = Vector2(1053, 65)
-
-[node name="Enemy6" parent="." instance=ExtResource("2_gl6un")]
-position = Vector2(158, 550)
-
-[node name="Enemy7" parent="." instance=ExtResource("2_gl6un")]
-position = Vector2(491, 26)
-
-[node name="EnemyManager" type="Node" parent="."]
+[node name="EnemyManager" type="Node2D" parent="."]
+script = ExtResource("3_j5yw3")
+enemy_scene = ExtResource("2_gl6un")
+player_path = NodePath("../Player")
