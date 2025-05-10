@@ -21,7 +21,6 @@ signal player_is_dead
 @onready var light_rotate: Node2D = $LightRotate
 
 func _ready() -> void:
-	$HealthBar.value = CURRENT_HEALTH
 	$Graphic.fill = 1
 
 func _physics_process(delta: float) -> void:
@@ -54,7 +53,6 @@ func _physics_process(delta: float) -> void:
 	if enemies_colliding.size() > 0:
 		CURRENT_HEALTH -= damage_rate * enemies_colliding.size()
 		CURRENT_HEALTH = max(CURRENT_HEALTH, 0)
-		$HealthBar.value = CURRENT_HEALTH
 		$Graphic.fill = CURRENT_HEALTH / MAX_HEALTH
 		
 	if CURRENT_HEALTH <= 0:
