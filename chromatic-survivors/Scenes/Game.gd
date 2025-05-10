@@ -16,8 +16,11 @@ var total_loot = 0;
 @onready var level_bar: ProgressBar = $CanvasLayer/LevelBar
 @onready var game_over: Label = $CanvasLayer/GameOver
 @onready var totals: HBoxContainer = $CanvasLayer/Totals
+@onready var level_bonus: Label = $CanvasLayer/LevelBonus
+var time_elapsed := 0.0
+@onready var time_label: Label = $CanvasLayer/TimeLabel  # Add a label in your scene to show the time
 
-var next_level_required = 10;
+var next_level_required = 5;
 var last_level = 0
 
 func _ready() -> void:
@@ -43,14 +46,21 @@ func _on_loot_get(colour: LightColour) -> void:
 	level_bar.value = total_loot - last_level
 	
 	if(total_loot >= next_level_required):
-		print("LEvel up :" + str(total_loot) + "/" + str(next_level_required))
+		print("Level up :" + str(total_loot) + "/" + str(next_level_required))
 		last_level = next_level_required
 		next_level_required = next_level_required + next_level_required * 1.2
 		level_bar.max_value = next_level_required - last_level
 		level_bar.value = total_loot - last_level
-		#player.level_up()
+		var level_up_bonus = player.LevelUp()
+		level_bonus.show_message(level_up_bonus)
 		
-
+func _process(delta: float) -> void:
+	if is_instance_valid(player):
+		time_elapsed += delta
+		var minutes = int(time_elapsed) / 60
+		var seconds = int(time_elapsed) % 60
+		time_label.text = "%02d:%02d" % [minutes, seconds]
+	
 func _on_heal_player() -> void:
 	if (is_instance_valid(player)):
-		player.CURRENT_HEALTH = min(player.CURRENT_HEALTH + 10, player.MAX_HEALTH)
+		player.CURRENT_HEALTH = min(player.CURRENT_HEALTH + 20, player.MAX_HEALTH)
