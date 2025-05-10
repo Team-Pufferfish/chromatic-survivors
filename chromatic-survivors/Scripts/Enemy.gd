@@ -48,13 +48,21 @@ func deal_damage(colour: int, amount: int, source_direction: Vector2 = Vector2.Z
 		trigger_damage_particles(source_direction, colour)
 	
 	if CURRENT_RED <= 0 and CURRENT_BLUE <= 0 and CURRENT_YELLOW <= 0:
-		spawn_explosion(get_color_from_stats())
+		spawn_explosion(colour)
 		queue_free()
 		
-func spawn_explosion(color: Color) -> void:
+func spawn_explosion(color: int) -> void:
+	var part_colour = GameColours.WHITE
+	match color:
+		LightColour.RED:
+			part_colour = GameColours.RED
+		LightColour.BLUE:
+			part_colour = GameColours.BLUE
+		LightColour.YELLOW:
+			part_colour = GameColours.YELLOW
 	var explosion = EnemyExplosionScene.instantiate()
 	explosion.global_position = global_position
-	explosion.modulate = color  # Apply color tint
+	explosion.modulate = part_colour  # Apply color tint
 	get_tree().current_scene.add_child(explosion)
 	
 func _process(_delta: float) -> void:

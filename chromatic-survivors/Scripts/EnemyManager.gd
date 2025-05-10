@@ -6,6 +6,7 @@ extends Node2D
 @export var reposition_rate: float = 0.25 # seconds between reposition checks
 @export var max_enemies: int = 100
 @export var enemy_scene: PackedScene
+@export var boss_scene: PackedScene
 @export var player_path: NodePath
 
 # Internal state
@@ -13,6 +14,7 @@ var spawn_timer := 0.0
 var reposition_timer := 0.0
 var player: Node2D
 var current_wave_config = []
+var current_spawn_radius
 
 func set_wave_config(config):
 	current_wave_config = config
@@ -48,7 +50,7 @@ func get_spawn_radius() -> float:
 	return half_size.length()  # just outside screen corners
 
 func spawn_enemy_if_possible():
-	var current_spawn_radius = get_spawn_radius()
+	current_spawn_radius = get_spawn_radius()
 	var current_enemies = get_tree().get_nodes_in_group("Enemies").size()
 	if current_enemies >= max_enemies:
 		return
@@ -71,6 +73,19 @@ func spawn_enemy_if_possible():
 
 	get_tree().current_scene.add_child(enemy_instance)
 	enemy_instance.add_to_group("Enemies")
+	
+func spawn_boss(stats: Dictionary) -> void:
+	var boss_instance = boss_scene.instantiate()
+	boss_instance.MAX_RED = stats.red
+	boss_instance.CURRENT_RED = stats.red
+	boss_instance.MAX_YELLOW = stats.yellow
+	boss_instance.CURRENT_YELLOW = stats.yellow
+	boss_instance.MAX_BLUE = stats.blue
+	boss_instance.CURRENT_BLUE = stats.blue
+	boss_instance.speed = stats.speed
+
+	boss_instance.global_position = get_weighted_random_point_on_circle(player.global_position, current_spawn_radius)
+	get_tree().current_scene.add_child(boss_instance)
 
 func choose_enemy_config():
 	var r = randf()

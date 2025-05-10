@@ -1,7 +1,7 @@
 extends Node
 
 @export var enemy_spawner_path: NodePath
-@export var wave_interval: float = 30.0  # Seconds between waves
+@export var wave_interval: float = 10.0  # Seconds between waves
 
 var current_wave_index := 0
 var wave_timer := 0.0
@@ -36,32 +36,80 @@ func setup_waves():
 			]
 		},
 				{
-			"spawn_rate": 1.2,
-			"max_enemies": 40,
+			"spawn_rate": 1.5,
+			"max_enemies": 30,
 			"enemies": [
-				{ "red": 10, "yellow": 0, "blue": 0, "speed": 100, "chance": 0.7 },
+				{ "red": 10, "yellow": 0, "blue": 0, "speed": 100, "chance": 0.3 },
 				{ "red": 0,  "yellow": 15, "blue": 0, "speed": 75, "chance": 0.3 },
 				{ "red": 0,  "yellow": 0, "blue": 10, "speed": 50, "chance": 0.3 }
 			]
 		},
 		{
-			"spawn_rate": 1.0,
+			"spawn_rate": 1.5,
+			"max_enemies": 35,
+			"enemies": [
+				{ "red": 10, "yellow": 15, "blue": 0, "speed": 87, "chance": 1.0 },
+
+			]
+		},
+		{
+			"spawn_rate": 1.5,
+			"max_enemies": 40,
+			"boss": { "red": 10, "yellow": 0, "blue": 0, "speed": 100, "chance": 1.0 },
+			"enemies": [
+				{ "red": 0, "yellow": 15, "blue": 0, "speed": 75, "chance": 1.0 },
+			]
+		},
+		{
+			"spawn_rate": 1.5,
+			"max_enemies": 45,
+			"enemies": [
+				{ "red": 0, "yellow": 0, "blue": 10, "speed": 50, "chance": 0.8 },
+				{ "red": 0,  "yellow": 15, "blue": 10, "speed": 62, "chance": 0.2 },
+			]
+		},
+		{
+			"spawn_rate": 1.5,
 			"max_enemies": 50,
 			"enemies": [
-				{ "red": 20, "yellow": 0, "blue": 20, "speed": 80, "chance": 0.5 },
-				{ "red": 0,  "yellow": 30, "blue": 10, "speed": 60, "chance": 0.5 },
+				{ "red": 10, "yellow": 0, "blue": 0, "speed": 100, "chance": 0.3 },
+				{ "red": 0,  "yellow": 15, "blue": 0, "speed": 75, "chance": 0.3 },
+				{ "red": 0,  "yellow": 0, "blue": 10, "speed": 50, "chance": 0.3 }
+			]
+		},
+		{
+			"spawn_rate": 1.5,
+			"max_enemies": 55,
+			"enemies": [
+				{ "red": 10, "yellow": 0, "blue": 0, "speed": 100, "chance": 0.3 },
+				{ "red": 0,  "yellow": 15, "blue": 0, "speed": 75, "chance": 0.3 },
+				{ "red": 0,  "yellow": 0, "blue": 10, "speed": 50, "chance": 0.3 }
+			]
+		},
+		{
+			"spawn_rate": 1.5,
+			"max_enemies": 60,
+			"enemies": [
+				{ "red": 10, "yellow": 0, "blue": 0, "speed": 100, "chance": 0.3 },
+				{ "red": 0,  "yellow": 15, "blue": 0, "speed": 75, "chance": 0.3 },
+				{ "red": 0,  "yellow": 0, "blue": 10, "speed": 50, "chance": 0.3 }
+			]
+		},		
+		{
+			"spawn_rate": 1.5,
+			"max_enemies": 65,
+			"boss": { "red": 0, "yellow": 25, "blue": 0, "speed": 75, "chance": 1.0 },
+			"enemies": [
+				{ "red": 10, "yellow": 0, "blue": 0, "speed": 100, "chance": 0.3 },
+				{ "red": 0,  "yellow": 15, "blue": 0, "speed": 75, "chance": 0.3 },
+				{ "red": 0,  "yellow": 0, "blue": 10, "speed": 50, "chance": 0.3 }
 			]
 		},
 				{
 			"spawn_rate": 0.25,
 			"max_enemies": 100,
 			"enemies": [
-				{ "red": 50,  "yellow": 0, "blue": 0, "speed": 100, "chance": 0.1 },
-				{ "red": 0,  "yellow": 75, "blue": 0, "speed": 75, "chance": 0.1 },
-				{ "red": 0,  "yellow": 0, "blue": 50, "speed": 50, "chance": 0.1 },
-				{ "red": 50,  "yellow": 75, "blue": 0, "speed": 100, "chance": 0.2 },
-				{ "red": 50,  "yellow": 0, "blue": 50, "speed": 65, "chance": 0.2 },
-				{ "red": 0,  "yellow": 75, "blue": 50, "speed": 75, "chance": 0.2 },
+				{ "red": 50,  "yellow": 50, "blue": 50, "speed": 100, "chance": 1.0 },
 			]
 		},
 	]
@@ -80,3 +128,6 @@ func advance_wave():
 	enemy_spawner.set_wave_config(wave.enemies)
 	enemy_spawner.spawn_rate = wave.spawn_rate
 	enemy_spawner.max_enemies = wave.max_enemies
+	
+	if wave.has("boss"):
+		enemy_spawner.spawn_boss(wave.boss)

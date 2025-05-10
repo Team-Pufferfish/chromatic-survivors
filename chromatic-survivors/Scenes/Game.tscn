@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://ctrm27h3oaxdc" path="res://Scripts/camera_2d.gd" id="3_2irst"]
 [ext_resource type="Script" uid="uid://dti232jsdohcf" path="res://Scripts/EnemyManager.gd" id="3_j5yw3"]
 [ext_resource type="Script" uid="uid://h1j801usuh4c" path="res://Scenes/WaveManager.gd" id="4_kldst"]
-[ext_resource type="PackedScene" uid="uid://dl88qyxi3jnxt" path="res://Scenes/StarGuy.tscn" id="7_fgofq"]
+[ext_resource type="PackedScene" uid="uid://b6uinoixj8o8u" path="res://Scenes/StarGuy.tscn" id="7_fgofq"]
 
 [node name="Game" type="Node2D"]
 
@@ -51,6 +51,7 @@ position = Vector2(589, 301)
 [node name="EnemyManager" type="Node2D" parent="."]
 script = ExtResource("3_j5yw3")
 enemy_scene = ExtResource("2_gl6un")
+boss_scene = ExtResource("7_fgofq")
 player_path = NodePath("../Player")
 
 [node name="WaveManager" type="Node" parent="."]
