@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://dl88qyxi3jnxt"]
+
+[ext_resource type="Script" uid="uid://dm700m5ubkkes" path="res://Scripts/Enemy.gd" id="1_b3olx"]
+[ext_resource type="Script" uid="uid://bi2twiavnl5ff" path="res://Scripts/Aura.gd" id="2_v6oq8"]
+[ext_resource type="PackedScene" uid="uid://c42j0fn0souip" path="res://Scenes/ColorSquare.tscn" id="3_ldwpc"]
+[ext_resource type="Texture2D" uid="uid://cdyauh4n8g1cp" path="res://star-svgrepo-com.svg" id="4_flado"]
+[ext_resource type="Texture2D" uid="uid://dfcxefeym47u2" path="res://star-svgrepo-com-2.svg" id="5_ek1ud"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mtws3"]
+radius = 172.003
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yomy8"]
+radius = 29.0172
+
+[node name="StarGuy" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_b3olx")
+
+[node name="Aura" type="Node2D" parent="."]
+script = ExtResource("2_v6oq8")
+
+[node name="EffectArea" type="Area2D" parent="Aura"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Aura/EffectArea"]
+shape = SubResource("CircleShape2D_mtws3")
+
+[node name="AuraGraphic" type="Polygon2D" parent="Aura"]
+position = Vector2(0, -0.514786)
+scale = Vector2(2.02959, 2.02959)
+color = Color(1, 1, 1, 0.47451)
+polygon = PackedVector2Array(0, -84, 22, -82, 43, -73, 59, -60, 73, -43, 82, -21, 85, -1, 82, 22, 74, 41, 60, 60, 42, 74, 23, 82, 1, 85, -22, 82, -43, 74, -59, 61, -73, 43, -82, 22, -85, 0, -82, -22, -73, -42, -60, -59, -43, -73, -22, -82)
+
+[node name="Graphic" parent="." instance=ExtResource("3_ldwpc")]
+scale = Vector2(55, 55)
+yellow_value = 1.0
+blue_value = 1.0
+red_value = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_yomy8")
+
+[node name="Outside" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_flado")
+
+[node name="Inside" type="Sprite2D" parent="."]
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("5_ek1ud")
