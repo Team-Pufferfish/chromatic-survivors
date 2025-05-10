@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cghqp7uq7cafd"]
+[gd_scene load_steps=12 format=3 uid="uid://cghqp7uq7cafd"]
 
 [ext_resource type="Script" uid="uid://coufwmh2hi3vs" path="res://Scenes/Game.gd" id="1_71axn"]
 [ext_resource type="Script" uid="uid://2kbyp3mou55n" path="res://Scenes/fps.gd" id="1_b2bpf"]
@@ -7,6 +7,19 @@
 [ext_resource type="Script" uid="uid://ctrm27h3oaxdc" path="res://Scripts/camera_2d.gd" id="3_2irst"]
 [ext_resource type="Script" uid="uid://dti232jsdohcf" path="res://Scripts/EnemyManager.gd" id="3_j5yw3"]
 [ext_resource type="Script" uid="uid://h1j801usuh4c" path="res://Scenes/WaveManager.gd" id="4_kldst"]
+[ext_resource type="PackedScene" uid="uid://bea6vfscfhtg1" path="res://Scenes/Health.tscn" id="8_bf53h"]
+[ext_resource type="PackedScene" uid="uid://c03u5584dgyxm" path="res://Scenes/Collector.tscn" id="9_71axn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bf53h"]
+draw_center = false
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_71axn"]
+bg_color = Color(1, 1, 1, 1)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_71axn")
@@ -35,16 +48,19 @@ size_flags_horizontal = 3
 size_flags_vertical = 8
 
 [node name="Red" type="Label" parent="CanvasLayer/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 text = "Red 0"
 
 [node name="Blue" type="Label" parent="CanvasLayer/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 1, 1)
 text = "Blue 0"
 
 [node name="Yellow" type="Label" parent="CanvasLayer/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 0, 1)
 text = "Yellow 0"
@@ -52,6 +68,23 @@ text = "Yellow 0"
 [node name="Total" type="Label" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 text = "Total 0"
+
+[node name="LevelBar" type="ProgressBar" parent="CanvasLayer"]
+custom_minimum_size = Vector2(648, 64)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = -117.0
+offset_right = 2.0
+offset_bottom = -90.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_bf53h")
+theme_override_styles/fill = SubResource("StyleBoxFlat_71axn")
+show_percentage = false
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 scroll_ignore_camera_zoom = true
@@ -81,5 +114,20 @@ player_path = NodePath("../Player")
 [node name="WaveManager" type="Node" parent="."]
 script = ExtResource("4_kldst")
 enemy_spawner_path = NodePath("../EnemyManager")
+
+[node name="Health" parent="." instance=ExtResource("8_bf53h")]
+position = Vector2(-1391, 265)
+
+[node name="Health2" parent="." instance=ExtResource("8_bf53h")]
+position = Vector2(570, -863)
+
+[node name="Health3" parent="." instance=ExtResource("8_bf53h")]
+position = Vector2(2790, 283)
+
+[node name="Health4" parent="." instance=ExtResource("8_bf53h")]
+position = Vector2(561, 1913)
+
+[node name="Collector" parent="." instance=ExtResource("9_71axn")]
+position = Vector2(1331, 695)
 
 [connection signal="player_is_dead" from="Player" to="." method="_on_player_player_is_dead"]

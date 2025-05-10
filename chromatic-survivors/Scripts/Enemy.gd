@@ -7,6 +7,8 @@ enum LightColour {RED, BLUE, YELLOW}
 const DamageParticleScene = preload("res://damage_particles.tscn")
 const EnemyExplosionScene = preload("res://explosive_enemy.tscn")
 const LootScene = preload("res://Scenes/loot.tscn")
+const COLLECTOR = preload("res://Scenes/Collector.tscn")
+const HEALTH = preload("res://Scenes/Health.tscn")
 
 @export var speed : int = 75
 
@@ -55,7 +57,17 @@ func deal_damage(colour: int, amount: int, source_direction: Vector2 = Vector2.Z
 		queue_free()
 
 func maybe_spawn_loot(colour:int):
-	if randi() % 2 == 0:  # 50% chance
+	var loot_chance = randi()
+	if loot_chance % 50 == 0:  # 2% chance
+		var collect = COLLECTOR.instantiate()
+		collect.global_position = global_position
+		get_tree().current_scene.add_child(collect)
+	elif loot_chance % 10 == 0:
+		var health = HEALTH.instantiate()
+		health.global_position = global_position
+		get_tree().current_scene.add_child(health)
+		health.heal_player.connect(game._on_heal_player)
+	else:
 		var loot = LootScene.instantiate()
 		loot.loot_colour = colour
 		loot.global_position = global_position

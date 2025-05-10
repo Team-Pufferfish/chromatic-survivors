@@ -1,6 +1,6 @@
 extends Node2D
 
-enum EnemyType { SQUARE, STAR, HEX, TRIANGLE }
+enum EnemyType { SQUARE, STAR, HEX, TRIANGLE, SHEILD }
 # Adjustable variables
 @export var spawn_radius: float = 300.0
 @export var spawn_rate: float = 0.5 # seconds between spawns
@@ -12,7 +12,7 @@ var enemy_scenes = {
 	EnemyType.SQUARE: preload("res://Scenes/enemy.tscn"),
 	EnemyType.STAR: preload("res://Scenes/StarGuy.tscn"),
 	EnemyType.HEX: preload("res://Scenes/HexGuy.tscn"),
-	#EnemyType.TRIANGLE: preload("res://Scenes/Triangle.tscn")
+	EnemyType.SHEILD: preload("res://Scenes/ShieldGuy.tscn")
 }
 
 # Internal state
@@ -88,6 +88,8 @@ func spawn_enemy_if_possible():
 	enemy_instance.add_to_group("Enemies")
 	
 func spawn_boss(stats: Dictionary) -> void:
+	if !is_instance_valid(player):
+		return
 	var type = stats.get("type", EnemyType.SQUARE)
 	var boss_scene = enemy_scenes.get(type, null)
 	if boss_scene == null:
@@ -126,7 +128,6 @@ func reposition_far_enemies():
 		if enemy.global_position.distance_to(player.global_position) > reposition_radius:
 			var new_pos = get_weighted_random_point_on_circle(player.global_position, current_spawn_radius)
 			enemy.global_position = new_pos
-			print("moved enemy")
 
 # Function to get a random point on a circle around the player
 func get_random_point_on_circle(center: Vector2, radius: float) -> Vector2:
