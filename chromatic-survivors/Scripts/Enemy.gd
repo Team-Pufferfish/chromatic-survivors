@@ -71,7 +71,7 @@ func get_color_from_stats() -> Color:
 	if has_red and has_blue and has_yellow:
 		return Color.SADDLE_BROWN
 	if has_red and has_blue:
-		return Color.WEB_PURPLE
+		return Color.REBECCA_PURPLE
 	if has_red and has_yellow:
 		return Color.ORANGE
 	if has_yellow and has_blue:
