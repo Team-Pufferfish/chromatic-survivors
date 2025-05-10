@@ -19,6 +19,8 @@ var light_colour = LightColour.RED
 signal player_is_dead
 
 @onready var light_rotate: Node2D = $LightRotate
+var DamageParticleScene = preload("res://player_particles.tscn")
+var ExplosivePlayerScene = preload("res://explosive_player.tscn")
 
 func _ready() -> void:
 	light_colour = LightColour.BLUE
@@ -60,8 +62,13 @@ func _physics_process(delta: float) -> void:
 		CURRENT_HEALTH = max(CURRENT_HEALTH, 0)
 		$Inside.scale = Vector2(CURRENT_HEALTH / MAX_HEALTH * 0.06,CURRENT_HEALTH / MAX_HEALTH * 0.06)
 		
+		# Trigger white damage particles
+		spawn_damage_particles()
+		
 	if CURRENT_HEALTH <= 0:
 		emit_signal("player_is_dead")
+		spawn_explosive_player()
+		queue_free()
 	
 	# Update damage timer
 	light_damage_timer += delta
@@ -74,3 +81,15 @@ func apply_light_cone_damage() -> void:
 	for enemy in enemies_in_light_cone:
 		var to_enemy = enemy.global_position - global_position
 		enemy.deal_damage(light_colour, light_damage_amount,to_enemy)  # Example damage amount
+		
+func spawn_damage_particles() -> void:
+	var particles = DamageParticleScene.instantiate()
+	particles.modulate = Color.WHITE
+	particles.global_position = global_position
+	get_tree().current_scene.add_child(particles)
+	particles.emitting = true
+	
+func spawn_explosive_player() -> void:
+	var explosion = ExplosivePlayerScene.instantiate()
+	explosion.global_position = global_position
+	get_tree().current_scene.add_child(explosion)

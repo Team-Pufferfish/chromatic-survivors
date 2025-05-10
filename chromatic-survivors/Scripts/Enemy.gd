@@ -4,6 +4,8 @@ enum LightColour {RED, BLUE, YELLOW}
 
 @onready var player = get_node("/root/Game/Player")
 var DamageParticleScene = preload("res://damage_particles.tscn")
+var ExplosivePlayerScene = preload("res://explosive_enemy.tscn")
+
 @export var speed : int = 75
 
 @export var MAX_BLUE : float 
