@@ -1,14 +1,14 @@
 [gd_scene load_steps=12 format=3 uid="uid://cghqp7uq7cafd"]
 
 [ext_resource type="Script" uid="uid://coufwmh2hi3vs" path="res://Scenes/Game.gd" id="1_71axn"]
-[ext_resource type="Script" uid="uid://2kbyp3mou55n" path="res://Scenes/fps.gd" id="1_b2bpf"]
+[ext_resource type="Script" path="res://Scenes/fps.gd" id="1_b2bpf"]
 [ext_resource type="PackedScene" uid="uid://ch76b74jwc7xw" path="res://Scenes/Player.tscn" id="1_iukft"]
-[ext_resource type="Texture2D" uid="uid://chco22r342a3a" path="res://texture-black-tile-background_167862-7841.jpg" id="2_7lihs"]
 [ext_resource type="Script" uid="uid://ctrm27h3oaxdc" path="res://Scripts/camera_2d.gd" id="3_2irst"]
 [ext_resource type="Script" uid="uid://dti232jsdohcf" path="res://Scripts/EnemyManager.gd" id="3_j5yw3"]
 [ext_resource type="Script" uid="uid://h1j801usuh4c" path="res://Scenes/WaveManager.gd" id="4_kldst"]
 [ext_resource type="PackedScene" uid="uid://bea6vfscfhtg1" path="res://Scenes/Health.tscn" id="8_bf53h"]
 [ext_resource type="PackedScene" uid="uid://c03u5584dgyxm" path="res://Scenes/Collector.tscn" id="9_71axn"]
+[ext_resource type="Script" uid="uid://bp5tj7s8xl07c" path="res://Scripts/GridDrawer.gd" id="10_71axn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bf53h"]
 draw_center = false
@@ -102,18 +102,6 @@ size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 128
 text = "GAME OVER"
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-scroll_ignore_camera_zoom = true
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_mirroring = Vector2(2000, 1200)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-texture_repeat = 2
-scale = Vector2(1.63083, 1.63083)
-texture = ExtResource("2_7lihs")
-centered = false
-
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
 position = Vector2(589, 301)
 script = ExtResource("3_2irst")
@@ -144,5 +132,9 @@ position = Vector2(561, 1913)
 
 [node name="Collector" parent="." instance=ExtResource("9_71axn")]
 position = Vector2(1331, 695)
+
+[node name="Grid" type="Node2D" parent="."]
+z_index = -4096
+script = ExtResource("10_71axn")
 
 [connection signal="player_is_dead" from="Player" to="." method="_on_player_player_is_dead"]
