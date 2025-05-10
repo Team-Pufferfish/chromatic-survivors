@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://bnkv1imuw354x"]
 
 [ext_resource type="Script" uid="uid://dnbvqy4dh1cc1" path="res://ColorSquare.gd" id="1_17iwj"]
-[ext_resource type="Script" uid="uid://cqmmkx2ix65u7" path="res://ColorCircle.gd" id="1_enwtc"]
-[ext_resource type="Script" uid="uid://blnxr2l1x4m28" path="res://SimplePlayerShape.gd" id="3_6j4e2"]
-[ext_resource type="Script" uid="uid://c4craxm3yh46p" path="res://hand.gd" id="4_8pqmn"]
+[ext_resource type="Script" path="res://ColorCircle.gd" id="1_enwtc"]
+[ext_resource type="Script" path="res://SimplePlayerShape.gd" id="3_6j4e2"]
+[ext_resource type="Script" path="res://hand.gd" id="4_8pqmn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6j4e2"]
 

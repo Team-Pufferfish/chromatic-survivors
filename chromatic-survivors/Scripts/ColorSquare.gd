@@ -1,6 +1,18 @@
 @tool
 extends Node2D
 
+# Dictionary of color names to RGB values
+var COLORS = {
+	"yellow": Color(1, 1, 0),
+	"red": Color(1, 0, 0),
+	"blue": Color(0, 0, 1),
+	"green": Color(0, 1, 0),
+	"orange": Color(1, 0.451, 0),
+	"purple": Color(0.5, 0, 0.5),
+	"brown": Color(0.6, 0.3, 0.1)
+}
+
+
 #@export_range(0, 100, 1, "or_less", "or_greater") var l: int
 # Export the values with a slider in the Inspector, range from 0 to 1
 @export_range(0,1,0.01) var yellow_value: float = 0

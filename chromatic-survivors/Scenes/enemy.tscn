@@ -22,7 +22,6 @@ script = ExtResource("1_hghv2")
 
 [node name="Graphic" parent="." instance=ExtResource("2_1f0kj")]
 scale = Vector2(55, 55)
-yellow_value = 1.0
 blue_value = 1.0
 red_value = 1.0
 
