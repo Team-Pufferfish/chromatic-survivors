@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://c42j0fn0souip"]
+
+[ext_resource type="Script" uid="uid://bwu3kpb3ea8rm" path="res://Scripts/ColorSquare.gd" id="1_vbk5k"]
+
+[node name="ColorSquare" type="Node2D"]
+script = ExtResource("1_vbk5k")
+yellow_value = 0.44
+blue_value = 0.76
+red_value = 1.0
+
+[node name="RedSquare" type="Polygon2D" parent="."]
+color = Color(1, 0, 0, 1)
+polygon = PackedVector2Array(-0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5)
+
+[node name="BlueSquare" type="Polygon2D" parent="."]
+scale = Vector2(0.76, 0.76)
+color = Color(0, 0, 1, 1)
+polygon = PackedVector2Array(-0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5)
+
+[node name="YellowSquare" type="Polygon2D" parent="."]
+scale = Vector2(0.44, 0.44)
+color = Color(1, 1, 0, 1)
+polygon = PackedVector2Array(-0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5)
+
+[node name="GreenSquare" type="Polygon2D" parent="."]
+scale = Vector2(0.44, 0.44)
+color = Color(0, 1, 0, 1)
+polygon = PackedVector2Array(-0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5)
+
+[node name="PurpleSquare" type="Polygon2D" parent="."]
+scale = Vector2(0.76, 0.76)
+color = Color(1, 0, 1, 1)
+polygon = PackedVector2Array(-0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5)
+
+[node name="OrangeSquare" type="Polygon2D" parent="."]
+scale = Vector2(0.44, 0.44)
+color = Color(1, 0.45098, 0, 1)
+polygon = PackedVector2Array(-0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5)
+
+[node name="BrownSquare" type="Polygon2D" parent="."]
+scale = Vector2(0.44, 0.44)
+color = Color(0.744458, 0.456136, 0.206996, 1)
+polygon = PackedVector2Array(-0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5)
