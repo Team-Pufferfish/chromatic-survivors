@@ -3,6 +3,7 @@ extends CharacterBody2D
 enum LightColour {RED, BLUE, YELLOW}
 
 @onready var player = get_node("/root/Game/Player")
+@onready var game = get_node("/root/Game")
 const DamageParticleScene = preload("res://damage_particles.tscn")
 const EnemyExplosionScene = preload("res://explosive_enemy.tscn")
 const LootScene = preload("res://Scenes/loot.tscn")
@@ -56,17 +57,10 @@ func deal_damage(colour: int, amount: int, source_direction: Vector2 = Vector2.Z
 func maybe_spawn_loot(colour:int):
 	if randi() % 2 == 0:  # 50% chance
 		var loot = LootScene.instantiate()
-		var part_colour = GameColours.WHITE
-		match colour:
-			LightColour.RED:
-				part_colour = GameColours.RED
-			LightColour.BLUE:
-				part_colour = GameColours.BLUE
-			LightColour.YELLOW:
-				part_colour = GameColours.YELLOW
-		loot.modulate = part_colour
+		loot.loot_colour = colour
 		loot.global_position = global_position
 		get_tree().current_scene.add_child(loot)
+		loot.loot_get.connect(game._on_loot_get)
 		
 func spawn_explosion(color: int) -> void:
 	var part_colour = GameColours.WHITE

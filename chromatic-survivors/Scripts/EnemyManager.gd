@@ -1,13 +1,19 @@
 extends Node2D
 
+enum EnemyType { SQUARE, STAR, HEX, TRIANGLE }
 # Adjustable variables
 @export var spawn_radius: float = 300.0
 @export var spawn_rate: float = 0.5 # seconds between spawns
 @export var reposition_rate: float = 0.25 # seconds between reposition checks
 @export var max_enemies: int = 100
-@export var enemy_scene: PackedScene
-@export var boss_scene: PackedScene
 @export var player_path: NodePath
+
+var enemy_scenes = {
+	EnemyType.SQUARE: preload("res://Scenes/enemy.tscn"),
+	EnemyType.STAR: preload("res://Scenes/StarGuy.tscn"),
+	#EnemyType.HEX: preload("res://Enemies/Hex.tscn"),
+	#EnemyType.TRIANGLE: preload("res://Enemies/Triangle.tscn")
+}
 
 # Internal state
 var spawn_timer := 0.0
@@ -21,6 +27,7 @@ func set_wave_config(config):
 
 func _ready():
 	player = get_node(player_path)
+	current_spawn_radius = get_spawn_radius()
 
 func _process(delta):
 	if !is_instance_valid(player):
@@ -59,6 +66,12 @@ func spawn_enemy_if_possible():
 	if enemy_data == null:
 		return
 
+	var type = enemy_data.get("type", EnemyType.SQUARE)
+	var enemy_scene = enemy_scenes.get(type, null)
+	if enemy_scene == null:
+		push_error("Unknown enemy type or scene not loaded")
+		return
+
 	var enemy_instance = enemy_scene.instantiate()
 	enemy_instance.global_position = get_weighted_random_point_on_circle(player.global_position, current_spawn_radius)
 
@@ -75,6 +88,12 @@ func spawn_enemy_if_possible():
 	enemy_instance.add_to_group("Enemies")
 	
 func spawn_boss(stats: Dictionary) -> void:
+	var type = stats.get("type", EnemyType.SQUARE)
+	var boss_scene = enemy_scenes.get(type, null)
+	if boss_scene == null:
+		push_error("Unknown boss type or scene not loaded")
+		return
+
 	var boss_instance = boss_scene.instantiate()
 	boss_instance.MAX_RED = stats.red
 	boss_instance.CURRENT_RED = stats.red
@@ -85,7 +104,8 @@ func spawn_boss(stats: Dictionary) -> void:
 	boss_instance.speed = stats.speed
 
 	boss_instance.global_position = get_weighted_random_point_on_circle(player.global_position, current_spawn_radius)
-	get_tree().current_scene.add_child(boss_instance)
+	get_tree().current_scene.add_child.call_deferred(boss_instance)
+	boss_instance.add_to_group("Enemies")
 
 func choose_enemy_config():
 	var r = randf()
@@ -98,7 +118,7 @@ func choose_enemy_config():
 
 # Function to check and reposition far enemies
 func reposition_far_enemies():
-	var current_spawn_radius = get_spawn_radius()
+	current_spawn_radius = get_spawn_radius()
 	var reposition_radius = current_spawn_radius * 1.1
 
 	# 1. Check and reposition far enemies
@@ -106,7 +126,7 @@ func reposition_far_enemies():
 		if enemy.global_position.distance_to(player.global_position) > reposition_radius:
 			var new_pos = get_weighted_random_point_on_circle(player.global_position, current_spawn_radius)
 			enemy.global_position = new_pos
-			#print("moved enemy")
+			print("moved enemy")
 
 # Function to get a random point on a circle around the player
 func get_random_point_on_circle(center: Vector2, radius: float) -> Vector2:
@@ -114,21 +134,20 @@ func get_random_point_on_circle(center: Vector2, radius: float) -> Vector2:
 	return center + Vector2(cos(angle), sin(angle)) * radius
 	
 
-# Function to get a random point on a circle around the player, weighted in the direction of movement
 func get_weighted_random_point_on_circle(center: Vector2, radius: float) -> Vector2:
-	# Get the player's velocity directly
 	var velocity = player.velocity
 
-	# Normalize the direction to get a unit vector
-	var direction = velocity.normalized()
+	# If player is not moving, spawn anywhere
+	if velocity.length() == 0:
+		var angle = randf() * TAU
+		return center + Vector2(cos(angle), sin(angle)) * radius
 
-	# Generate a random angle for base spawn point
-	var angle = randf() * TAU
-	
-	var bias_factor = 2.0
+	# Get the angle of the player's movement
+	var move_angle = velocity.angle()
 
-	# Weight the angle based on the player's movement direction
-	var weighted_angle = angle + direction.angle() * bias_factor
+	# Add some randomness around the movement direction (±30° for example)
+	var spread = deg_to_rad(30)
+	var biased_angle = move_angle + randf_range(-spread, spread)
 
-	# Calculate the weighted spawn position
-	return center + Vector2(cos(weighted_angle), sin(weighted_angle)) * radius
+	# Return a point on the circle in that direction
+	return center + Vector2(cos(biased_angle), sin(biased_angle)) * radius

@@ -1,32 +1,57 @@
-[gd_scene load_steps=10 format=3 uid="uid://cghqp7uq7cafd"]
+[gd_scene load_steps=8 format=3 uid="uid://cghqp7uq7cafd"]
 
+[ext_resource type="Script" uid="uid://coufwmh2hi3vs" path="res://Scenes/Game.gd" id="1_71axn"]
 [ext_resource type="Script" uid="uid://2kbyp3mou55n" path="res://Scenes/fps.gd" id="1_b2bpf"]
 [ext_resource type="PackedScene" uid="uid://ch76b74jwc7xw" path="res://Scenes/Player.tscn" id="1_iukft"]
 [ext_resource type="Texture2D" uid="uid://chco22r342a3a" path="res://texture-black-tile-background_167862-7841.jpg" id="2_7lihs"]
-[ext_resource type="PackedScene" uid="uid://blo4tyvs8qm1g" path="res://Scenes/enemy.tscn" id="2_gl6un"]
 [ext_resource type="Script" uid="uid://ctrm27h3oaxdc" path="res://Scripts/camera_2d.gd" id="3_2irst"]
 [ext_resource type="Script" uid="uid://dti232jsdohcf" path="res://Scripts/EnemyManager.gd" id="3_j5yw3"]
 [ext_resource type="Script" uid="uid://h1j801usuh4c" path="res://Scenes/WaveManager.gd" id="4_kldst"]
-[ext_resource type="PackedScene" uid="uid://b6uinoixj8o8u" path="res://Scenes/StarGuy.tscn" id="7_fgofq"]
-[ext_resource type="PackedScene" uid="uid://4cpfoloaif36" path="res://Scenes/loot.tscn" id="9_bf53h"]
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_71axn")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = -50
-visible = false
 
-[node name="Label" type="Label" parent="CanvasLayer"]
-offset_left = 23.0
-offset_top = 10.0
-offset_right = 63.0
-offset_bottom = 33.0
+[node name="FPS" type="Label" parent="CanvasLayer"]
+offset_left = 9.0
+offset_top = 9.0
+offset_right = 49.0
+offset_bottom = 32.0
 script = ExtResource("1_b2bpf")
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-offset_right = 1153.0
-offset_bottom = 649.0
-color = Color(0.131379, 0.131379, 0.131379, 1)
+[node name="VBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -71.5
+offset_top = -77.0
+offset_right = 71.5
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 8
+
+[node name="Red" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "Red 0"
+
+[node name="Blue" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 1, 1)
+text = "Blue 0"
+
+[node name="Yellow" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+text = "Yellow 0"
+
+[node name="Total" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "Total 0"
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 scroll_ignore_camera_zoom = true
@@ -51,28 +76,10 @@ position = Vector2(589, 301)
 
 [node name="EnemyManager" type="Node2D" parent="."]
 script = ExtResource("3_j5yw3")
-enemy_scene = ExtResource("2_gl6un")
-boss_scene = ExtResource("7_fgofq")
 player_path = NodePath("../Player")
 
 [node name="WaveManager" type="Node" parent="."]
 script = ExtResource("4_kldst")
 enemy_spawner_path = NodePath("../EnemyManager")
 
-[node name="StarGuy" parent="." instance=ExtResource("7_fgofq")]
-position = Vector2(1097, 533)
-speed = 100
-MAX_RED = 30.0
-CURRENT_RED = 30.0
-
-[node name="Loot" parent="." instance=ExtResource("9_bf53h")]
-position = Vector2(375, 308)
-
-[node name="Loot2" parent="." instance=ExtResource("9_bf53h")]
-position = Vector2(413, 141)
-
-[node name="Loot3" parent="." instance=ExtResource("9_bf53h")]
-position = Vector2(149, 154)
-
-[node name="Loot4" parent="." instance=ExtResource("9_bf53h")]
-position = Vector2(123, 440)
+[connection signal="player_is_dead" from="Player" to="." method="_on_player_player_is_dead"]
