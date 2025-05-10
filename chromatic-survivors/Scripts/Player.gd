@@ -22,6 +22,8 @@ signal player_is_dead
 var DamageParticleScene = preload("res://player_particles.tscn")
 var ExplosivePlayerScene = preload("res://explosive_player.tscn")
 
+enum colors { red, yellow, blue }
+
 func _ready() -> void:
 	light_colour = LightColour.BLUE
 	$LightRotate/LineCone/LightColor.color = GameColours.BLUE
@@ -49,10 +51,38 @@ func _physics_process(delta: float) -> void:
 		$Inside.modulate = GameColours.RED
 	if(Input.is_action_just_released("p1_color_yellow")):
 		light_colour = LightColour.YELLOW
-		$LightRotate/LineCone/LightColor.color = GameColours.YELLOW
-		$Inside.modulate = GameColours.YELLOW
-	$LightRotate/LineCone/LightColor.color.a = 0.5
+		$LightRotate/LineCone/LightColor.color = Color.YELLOW
+		$Inside.modulate = Color.YELLOW
 	
+	if (Input.is_action_just_pressed("p1_cycle_color_left")):
+		if light_colour == LightColour.RED:
+			light_colour = LightColour.BLUE
+			$LightRotate/LineCone/LightColor.color = Color.BLUE
+			$Inside.modulate = Color.BLUE
+		elif light_colour == LightColour.YELLOW:
+			light_colour = LightColour.RED
+			$LightRotate/LineCone/LightColor.color = Color.RED
+			$Inside.modulate = Color.RED
+		elif light_colour == LightColour.BLUE:
+			light_colour = LightColour.YELLOW
+			$LightRotate/LineCone/LightColor.color = Color.YELLOW
+			$Inside.modulate = Color.YELLOW
+			
+	if (Input.is_action_just_pressed("p1_cycle_color_right")):
+		if light_colour == LightColour.RED:
+			light_colour = LightColour.YELLOW
+			$LightRotate/LineCone/LightColor.color = Color.YELLOW
+			$Inside.modulate = Color.YELLOW
+		elif light_colour == LightColour.YELLOW:
+			light_colour = LightColour.BLUE
+			$LightRotate/LineCone/LightColor.color = Color.BLUE
+			$Inside.modulate = Color.BLUE
+		elif light_colour == LightColour.BLUE:
+			light_colour = LightColour.RED
+			$LightRotate/LineCone/LightColor.color = Color.RED
+			$Inside.modulate = Color.RED
+			
+	$LightRotate/LineCone/LightColor.color.a = 0.5
 	velocity = direction * speed;
 
 	move_and_slide()
