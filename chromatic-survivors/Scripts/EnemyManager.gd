@@ -21,6 +21,8 @@ func _ready():
 	player = get_node(player_path)
 
 func _process(delta):
+	if !is_instance_valid(player):
+		return
 	# Update timers
 	spawn_timer += delta
 	reposition_timer += delta

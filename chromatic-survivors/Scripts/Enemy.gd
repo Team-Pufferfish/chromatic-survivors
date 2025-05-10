@@ -4,7 +4,7 @@ enum LightColour {RED, BLUE, YELLOW}
 
 @onready var player = get_node("/root/Game/Player")
 var DamageParticleScene = preload("res://damage_particles.tscn")
-var ExplosivePlayerScene = preload("res://explosive_enemy.tscn")
+var EnemyExplosionScene = preload("res://explosive_enemy.tscn")
 
 @export var speed : int = 75
 
@@ -21,8 +21,9 @@ var ExplosivePlayerScene = preload("res://explosive_enemy.tscn")
 @export var CURRENT_YELLOW : float 
 
 func _physics_process(_delta: float) -> void:
-	var player_direction = global_position.direction_to(player.global_position)
-	velocity = player_direction * speed
+	if is_instance_valid(player):
+		var player_direction = global_position.direction_to(player.global_position)
+		velocity = player_direction * speed
 	
 	move_and_slide()
 	
@@ -47,7 +48,14 @@ func deal_damage(colour: int, amount: int, source_direction: Vector2 = Vector2.Z
 		trigger_damage_particles(source_direction, colour)
 	
 	if CURRENT_RED <= 0 and CURRENT_BLUE <= 0 and CURRENT_YELLOW <= 0:
+		spawn_explosion(get_color_from_stats())
 		queue_free()
+		
+func spawn_explosion(color: Color) -> void:
+	var explosion = EnemyExplosionScene.instantiate()
+	explosion.global_position = global_position
+	explosion.modulate = color  # Apply color tint
+	get_tree().current_scene.add_child(explosion)
 	
 func _process(_delta: float) -> void:
 	$Graphic.yellow_value = CURRENT_YELLOW / max(MAX_YELLOW,1)
