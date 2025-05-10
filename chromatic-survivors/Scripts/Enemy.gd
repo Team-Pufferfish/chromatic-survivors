@@ -3,8 +3,9 @@ extends CharacterBody2D
 enum LightColour {RED, BLUE, YELLOW}
 
 @onready var player = get_node("/root/Game/Player")
-var DamageParticleScene = preload("res://damage_particles.tscn")
-var EnemyExplosionScene = preload("res://explosive_enemy.tscn")
+const DamageParticleScene = preload("res://damage_particles.tscn")
+const EnemyExplosionScene = preload("res://explosive_enemy.tscn")
+const LootScene = preload("res://Scenes/loot.tscn")
 
 @export var speed : int = 75
 
@@ -49,7 +50,23 @@ func deal_damage(colour: int, amount: int, source_direction: Vector2 = Vector2.Z
 	
 	if CURRENT_RED <= 0 and CURRENT_BLUE <= 0 and CURRENT_YELLOW <= 0:
 		spawn_explosion(colour)
+		maybe_spawn_loot(colour)
 		queue_free()
+
+func maybe_spawn_loot(colour:int):
+	if randi() % 2 == 0:  # 50% chance
+		var loot = LootScene.instantiate()
+		var part_colour = GameColours.WHITE
+		match colour:
+			LightColour.RED:
+				part_colour = GameColours.RED
+			LightColour.BLUE:
+				part_colour = GameColours.BLUE
+			LightColour.YELLOW:
+				part_colour = GameColours.YELLOW
+		loot.modulate = part_colour
+		loot.global_position = global_position
+		get_tree().current_scene.add_child(loot)
 		
 func spawn_explosion(color: int) -> void:
 	var part_colour = GameColours.WHITE

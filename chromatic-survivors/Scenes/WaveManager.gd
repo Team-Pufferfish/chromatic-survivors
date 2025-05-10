@@ -8,6 +8,9 @@ var wave_timer := 0.0
 var enemy_spawner  # Reference to your existing spawner node
 var waves = []  # Populated in _ready or externally
 
+signal wave_started
+signal boss_spawned
+
 func _ready():
 	enemy_spawner = get_node(enemy_spawner_path)
 	setup_waves()
@@ -118,6 +121,7 @@ func setup_waves():
 
 func advance_wave():
 	print("ADVANCING WAVE")
+	emit_signal("wave_started")
 	if current_wave_index >= waves.size():
 		print("All waves completed")
 		return
@@ -129,5 +133,7 @@ func advance_wave():
 	enemy_spawner.spawn_rate = wave.spawn_rate
 	enemy_spawner.max_enemies = wave.max_enemies
 	
-	if wave.has("boss"):
+	if wave.has("boss"):	
+		print("BOSS APPEARS")
+		emit_signal("boss_spawned")
 		enemy_spawner.spawn_boss(wave.boss)

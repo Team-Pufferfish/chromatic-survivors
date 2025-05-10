@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cghqp7uq7cafd"]
+[gd_scene load_steps=10 format=3 uid="uid://cghqp7uq7cafd"]
 
 [ext_resource type="Script" uid="uid://2kbyp3mou55n" path="res://Scenes/fps.gd" id="1_b2bpf"]
 [ext_resource type="PackedScene" uid="uid://ch76b74jwc7xw" path="res://Scenes/Player.tscn" id="1_iukft"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://dti232jsdohcf" path="res://Scripts/EnemyManager.gd" id="3_j5yw3"]
 [ext_resource type="Script" uid="uid://h1j801usuh4c" path="res://Scenes/WaveManager.gd" id="4_kldst"]
 [ext_resource type="PackedScene" uid="uid://b6uinoixj8o8u" path="res://Scenes/StarGuy.tscn" id="7_fgofq"]
+[ext_resource type="PackedScene" uid="uid://4cpfoloaif36" path="res://Scenes/loot.tscn" id="9_bf53h"]
 
 [node name="Game" type="Node2D"]
 
@@ -63,3 +64,15 @@ position = Vector2(1097, 533)
 speed = 100
 MAX_RED = 30.0
 CURRENT_RED = 30.0
+
+[node name="Loot" parent="." instance=ExtResource("9_bf53h")]
+position = Vector2(375, 308)
+
+[node name="Loot2" parent="." instance=ExtResource("9_bf53h")]
+position = Vector2(413, 141)
+
+[node name="Loot3" parent="." instance=ExtResource("9_bf53h")]
+position = Vector2(149, 154)
+
+[node name="Loot4" parent="." instance=ExtResource("9_bf53h")]
+position = Vector2(123, 440)
