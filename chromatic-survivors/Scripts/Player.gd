@@ -26,8 +26,9 @@ enum colors { red, yellow, blue }
 
 func _ready() -> void:
 	light_colour = LightColour.BLUE
-	$LightRotate/LineCone/LightColor.color = Color.BLUE
-	$Inside.modulate = Color.BLUE
+	$LightRotate/LineCone/LightColor.color = GameColours.BLUE
+	$Inside.modulate = GameColours.BLUE
+	$LightRotate/LineCone/LightColor.color.a = 0.5
 
 func _physics_process(delta: float) -> void:
 	var direction = Input.get_vector("p1_left", "p1_right","p1_up","p1_down");
@@ -41,13 +42,13 @@ func _physics_process(delta: float) -> void:
 	
 	if(Input.is_action_just_released("p1_color_blue")):
 		light_colour = LightColour.BLUE
-		$LightRotate/LineCone/LightColor.color = Color.BLUE
-		$Inside.modulate = Color.BLUE
+		$LightRotate/LineCone/LightColor.color = GameColours.BLUE
+		$Inside.modulate = GameColours.BLUE
 		
 	if(Input.is_action_just_released("p1_color_red")):
 		light_colour = LightColour.RED
-		$LightRotate/LineCone/LightColor.color = Color.RED
-		$Inside.modulate = Color.RED
+		$LightRotate/LineCone/LightColor.color = GameColours.RED
+		$Inside.modulate = GameColours.RED
 	if(Input.is_action_just_released("p1_color_yellow")):
 		light_colour = LightColour.YELLOW
 		$LightRotate/LineCone/LightColor.color = Color.YELLOW
@@ -114,7 +115,7 @@ func apply_light_cone_damage() -> void:
 		
 func spawn_damage_particles() -> void:
 	var particles = DamageParticleScene.instantiate()
-	particles.modulate = Color.WHITE
+	particles.modulate = GameColours.WHITE
 	particles.global_position = global_position
 	get_tree().current_scene.add_child(particles)
 	particles.emitting = true

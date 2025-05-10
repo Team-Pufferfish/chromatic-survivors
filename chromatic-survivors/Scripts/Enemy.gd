@@ -69,20 +69,20 @@ func get_color_from_stats() -> Color:
 	var has_yellow = MAX_YELLOW > 0
 
 	if has_red and has_blue and has_yellow:
-		return Color.SADDLE_BROWN
+		return GameColours.BROWN
 	if has_red and has_blue:
-		return Color.WEB_PURPLE
+		return GameColours.PURPLE
 	if has_red and has_yellow:
-		return Color.ORANGE
+		return GameColours.YELLOW
 	if has_yellow and has_blue:
-		return Color.GREEN
+		return GameColours.BLUE
 	if has_red:
-		return Color.RED
+		return GameColours.RED
 	if has_blue:
-		return Color.BLUE
+		return GameColours.BLUE
 	if has_yellow:
-		return Color.YELLOW
-	return Color.WHITE
+		return GameColours.YELLOW
+	return GameColours.WHITE
 	
 func trigger_damage_particles(from_direction: Vector2, colour: int) -> void:
 	var particles = DamageParticleScene.instantiate()
@@ -91,11 +91,11 @@ func trigger_damage_particles(from_direction: Vector2, colour: int) -> void:
 	# Set color based on damage type
 	match colour:
 		LightColour.RED:
-			particles.modulate = Color.RED
+			particles.modulate = GameColours.RED
 		LightColour.BLUE:
-			particles.modulate = Color.BLUE
+			particles.modulate = GameColours.BLUE
 		LightColour.YELLOW:
-			particles.modulate = Color.YELLOW
+			particles.modulate = GameColours.YELLOW
 	
 	# Optional: rotate in direction of damage
 	particles.rotation = from_direction.normalized().angle()

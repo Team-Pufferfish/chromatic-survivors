@@ -22,19 +22,19 @@ func _process(delta):
 	$BrownSquare.scale = Vector2(brown_value, brown_value)
 
 	if brown_value != 0:
-		$Outline.default_color = Color(0.6, 0.3, 0.1)
+		$Outline.default_color = GameColours.BROWN
 	elif purple_value != 0:
-		$Outline.default_color = Color(1, 0, 1)
+		$Outline.default_color = GameColours.PURPLE
 	elif orange_value != 0:
-		$Outline.default_color = Color(1, 0.451, 0)
+		$Outline.default_color = GameColours.ORANGE
 	elif green_value != 0:
-		$Outline.default_color = Color(0, 1, 0)
+		$Outline.default_color = GameColours.GREEN
 	elif yellow_value != 0:
-		$Outline.default_color = Color(1, 1, 0)
+		$Outline.default_color = GameColours.YELLOW
 	elif blue_value != 0:
-		$Outline.default_color = Color(0, 0, 1)
+		$Outline.default_color = GameColours.BLUE
 	elif red_value != 0:
-		$Outline.default_color = Color(1, 0, 0)
+		$Outline.default_color = GameColours.RED
 		
 		
 		
