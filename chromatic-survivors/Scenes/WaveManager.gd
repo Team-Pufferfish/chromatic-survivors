@@ -53,7 +53,7 @@ func setup_waves():
 			"spawn_rate": 1,
 			"max_enemies": 35,
 			"enemies": [
-					{"type": EnemyType.SQUARE, "red": 0,  "yellow": 15, "blue": 10, "speed": 62, "chance": 0.5 },
+					{"type": EnemyType.SQUARE, "red": 0,  "yellow": 15, "blue": 10, "speed": 62, "chance": 1.0 },
 			]
 		},
 		{#star intro -5

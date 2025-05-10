@@ -8,7 +8,7 @@ enum LightColour {RED, BLUE, YELLOW}
 var MAX_HEALTH = 100.0;
 var CURRENT_HEALTH = 100.0;
 var last_aim = Vector2.RIGHT
-var damage_rate = 2.0;
+var damage_rate = 50.0;
 
 var light_damage_interval := 0.05  # seconds between hits
 var light_damage_timer := 0.0
@@ -152,7 +152,7 @@ func _physics_process(delta: float) -> void:
 	
 	var enemies_colliding = $Hurtbox.get_overlapping_bodies()
 	if enemies_colliding.size() > 0:
-		CURRENT_HEALTH -= damage_rate# * enemies_colliding.size()
+		CURRENT_HEALTH -= damage_rate * delta * enemies_colliding.size()
 		CURRENT_HEALTH = max(CURRENT_HEALTH, 0)
 		
 		# Trigger white damage particles
