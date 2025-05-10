@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://cghqp7uq7cafd"]
+[gd_scene load_steps=12 format=3 uid="uid://cghqp7uq7cafd"]
 
 [ext_resource type="Script" path="res://Scenes/fps.gd" id="1_b2bpf"]
+[ext_resource type="PackedScene" uid="uid://b4fisber7xq6t" path="res://Scenes/ShieldGuy.tscn" id="1_dahhg"]
 [ext_resource type="PackedScene" uid="uid://ch76b74jwc7xw" path="res://Scenes/Player.tscn" id="1_iukft"]
 [ext_resource type="Texture2D" uid="uid://chco22r342a3a" path="res://texture-black-tile-background_167862-7841.jpg" id="2_7lihs"]
 [ext_resource type="PackedScene" uid="uid://blo4tyvs8qm1g" path="res://Scenes/enemy.tscn" id="2_gl6un"]
@@ -12,6 +13,21 @@
 [ext_resource type="PackedScene" uid="uid://4cpfoloaif36" path="res://Scenes/loot.tscn" id="9_bf53h"]
 
 [node name="Game" type="Node2D"]
+
+[node name="ShieldGuy" parent="." instance=ExtResource("1_dahhg")]
+position = Vector2(1456, 137)
+MAX_RED = 50.0
+CURRENT_RED = 50.0
+
+[node name="ShieldGuy2" parent="." instance=ExtResource("1_dahhg")]
+position = Vector2(562, 725)
+MAX_RED = 50.0
+CURRENT_RED = 50.0
+
+[node name="ShieldGuy3" parent="." instance=ExtResource("1_dahhg")]
+position = Vector2(732, 801)
+MAX_RED = 50.0
+CURRENT_RED = 50.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -50
@@ -37,7 +53,7 @@ motion_mirroring = Vector2(1200, 800)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 texture_repeat = 2
-position = Vector2(-20, -82)
+position = Vector2(-2, -76)
 scale = Vector2(1.63083, 1.63083)
 texture = ExtResource("2_7lihs")
 centered = false
