@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cghqp7uq7cafd"]
+[gd_scene load_steps=8 format=3 uid="uid://cghqp7uq7cafd"]
 
 [ext_resource type="Script" path="res://Scenes/fps.gd" id="1_b2bpf"]
 [ext_resource type="PackedScene" uid="uid://ch76b74jwc7xw" path="res://Scenes/Player.tscn" id="1_iukft"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://blo4tyvs8qm1g" path="res://Scenes/enemy.tscn" id="2_gl6un"]
 [ext_resource type="Script" uid="uid://dti232jsdohcf" path="res://Scripts/EnemyManager.gd" id="3_j5yw3"]
 [ext_resource type="Script" uid="uid://h1j801usuh4c" path="res://Scenes/WaveManager.gd" id="4_kldst"]
+[ext_resource type="PackedScene" uid="uid://dl88qyxi3jnxt" path="res://Scenes/StarGuy.tscn" id="7_fgofq"]
 
 [node name="Game" type="Node2D"]
 
@@ -51,3 +52,12 @@ player_path = NodePath("../Player")
 [node name="WaveManager" type="Node" parent="."]
 script = ExtResource("4_kldst")
 enemy_spawner_path = NodePath("../EnemyManager")
+
+[node name="StarGuy" parent="." instance=ExtResource("7_fgofq")]
+position = Vector2(1097, 533)
+speed = 100
+MAX_RED = 30.0
+CURRENT_RED = 30.0
+
+[node name="Enemy" parent="." instance=ExtResource("2_gl6un")]
+position = Vector2(754, 522)
