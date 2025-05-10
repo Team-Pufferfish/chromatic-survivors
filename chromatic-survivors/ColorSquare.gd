@@ -1,16 +1,22 @@
-extends ColorShape
+@tool
+extends Node2D
 
-func _draw():
-	draw_polyline(denormalize(generate_rect_points(1,1), 1.1), get_color(red_value, yellow_value, blue_value), 0.02)
-	
-	#draw redsquare
-	draw_colored_polygon(denormalize(generate_rect_points(1,1),red_value), get_color(1,0,0))
-	draw_colored_polygon(denormalize(generate_rect_points(1,1),yellow_value), get_color(0,1,0))
-	draw_colored_polygon(denormalize(generate_rect_points(1,1),blue_value), get_color(0,0,1))
-	
-	draw_colored_polygon(denormalize(generate_rect_points(1,1),min(red_value, yellow_value)), get_color(1,1,0))
-	draw_colored_polygon(denormalize(generate_rect_points(1,1),min(red_value, blue_value)), get_color(1,0,1))
-	draw_colored_polygon(denormalize(generate_rect_points(1,1),min(yellow_value, blue_value)), get_color(0,1,1))
-	
-	draw_colored_polygon(denormalize(generate_rect_points(1,1),min(red_value,yellow_value,blue_value)), get_color(red_value,yellow_value,blue_value))
-	
+@export_range(0,1,0.01) var yellow_value: float = 0
+@export_range(0,1,0.01) var blue_value: float = 0
+@export_range(0,1,0.01) var red_value: float = 0
+
+func _process(delta):
+	$RedSquare.scale = Vector2(red_value, red_value)
+	$BlueSquare.scale = Vector2(blue_value, blue_value)
+	$YellowSquare.scale = Vector2(yellow_value, yellow_value)
+
+	var green_value = min(blue_value, yellow_value)
+	$GreenSquare.scale = Vector2(green_value, green_value)
+	var orange_value = min(yellow_value,red_value)
+	$OrangeSquare.scale = Vector2(orange_value, orange_value)
+
+	var purple_value = min(blue_value, red_value)
+	$PurpleSquare.scale = Vector2(purple_value, purple_value)
+
+	var brown_value = min(blue_value, red_value, yellow_value)
+	$BrownSquare.scale = Vector2(brown_value, brown_value)
