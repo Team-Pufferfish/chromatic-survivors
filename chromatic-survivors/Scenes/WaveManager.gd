@@ -22,22 +22,31 @@ func setup_waves():
 	waves = [
 		{
 			"spawn_rate": 2.0,
-			"max_enemies": 20,
+			"max_enemies": 10,
 			"enemies": [
-				{ "red": 0, "yellow": 0, "blue": 10, "speed": 60, "chance": 1.0 },
+				{ "red": 0, "yellow": 0, "blue": 10, "speed": 50, "chance": 1.0 },
 			]
 		},
 		{
 			"spawn_rate": 1.5,
+			"max_enemies": 25,
+			"enemies": [
+				{ "red": 10, "yellow": 0, "blue": 0, "speed": 100, "chance": 0.7 },
+				{ "red": 0,  "yellow": 15, "blue": 0, "speed": 75, "chance": 0.3 },
+			]
+		},
+				{
+			"spawn_rate": 1.2,
 			"max_enemies": 40,
 			"enemies": [
-				{ "red": 20, "yellow": 0, "blue": 0, "speed": 100, "chance": 0.7 },
-				{ "red": 0,  "yellow": 30, "blue": 0, "speed": 70, "chance": 0.3 },
+				{ "red": 10, "yellow": 0, "blue": 0, "speed": 100, "chance": 0.7 },
+				{ "red": 0,  "yellow": 15, "blue": 0, "speed": 75, "chance": 0.3 },
+				{ "red": 0,  "yellow": 0, "blue": 10, "speed": 50, "chance": 0.3 }
 			]
 		},
 		{
 			"spawn_rate": 1.0,
-			"max_enemies": 75,
+			"max_enemies": 50,
 			"enemies": [
 				{ "red": 20, "yellow": 0, "blue": 20, "speed": 80, "chance": 0.5 },
 				{ "red": 0,  "yellow": 30, "blue": 10, "speed": 60, "chance": 0.5 },

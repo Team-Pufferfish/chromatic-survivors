@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://blo4tyvs8qm1g"]
 
 [ext_resource type="Script" uid="uid://dm700m5ubkkes" path="res://Scripts/Enemy.gd" id="1_hghv2"]
-[ext_resource type="Script" path="res://ColorSquare.gd" id="2_1f0kj"]
+[ext_resource type="Script" uid="uid://dnbvqy4dh1cc1" path="res://ColorSquare.gd" id="2_1f0kj"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hghv2"]
 particle_flag_disable_z = true
