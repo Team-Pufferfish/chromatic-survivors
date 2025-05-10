@@ -35,7 +35,6 @@ polygon = PackedVector2Array(0, -84, 22, -82, 43, -73, 59, -60, 73, -43, 82, -21
 
 [node name="Graphic" parent="." instance=ExtResource("3_ldwpc")]
 scale = Vector2(55, 55)
-yellow_value = 1.0
 blue_value = 1.0
 red_value = 1.0
 
