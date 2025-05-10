@@ -90,7 +90,7 @@ func _physics_process(delta: float) -> void:
 	
 	var enemies_colliding = $Hurtbox.get_overlapping_bodies()
 	if enemies_colliding.size() > 0:
-		CURRENT_HEALTH -= damage_rate * enemies_colliding.size()
+		CURRENT_HEALTH -= damage_rate# * enemies_colliding.size()
 		CURRENT_HEALTH = max(CURRENT_HEALTH, 0)
 		
 		# Trigger white damage particles

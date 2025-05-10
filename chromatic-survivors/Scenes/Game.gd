@@ -9,11 +9,13 @@ var total_loot = 0;
 
 @onready var player: CharacterBody2D = $Player
 
-@onready var red: Label = $CanvasLayer/VBoxContainer/Red
-@onready var blue: Label = $CanvasLayer/VBoxContainer/Blue
-@onready var total: Label = $CanvasLayer/VBoxContainer/Total
-@onready var yellow: Label = $CanvasLayer/VBoxContainer/Yellow
+@onready var red: Label = $CanvasLayer/Totals/Red
+@onready var blue: Label = $CanvasLayer/Totals/Blue
+@onready var total: Label = $CanvasLayer/Totals/Total
+@onready var yellow: Label = $CanvasLayer/Totals/Yellow
 @onready var level_bar: ProgressBar = $CanvasLayer/LevelBar
+@onready var game_over: Label = $CanvasLayer/GameOver
+@onready var totals: HBoxContainer = $CanvasLayer/Totals
 
 var next_level_required = 10;
 var last_level = 0
@@ -22,7 +24,8 @@ func _ready() -> void:
 	level_bar.max_value = next_level_required
 
 func _on_player_player_is_dead() -> void:
-	pass # Replace with function body.
+	game_over.show()
+	totals.show()
 
 func _on_loot_get(colour: LightColour) -> void:
 	if(colour == LightColour.RED):
