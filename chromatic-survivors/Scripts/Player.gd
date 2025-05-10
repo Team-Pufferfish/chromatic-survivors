@@ -18,17 +18,68 @@ var light_colour = LightColour.RED
 
 signal player_is_dead
 
+var yellowLevel = ColorLevel.new()
+var blueLevel = ColorLevel.new()
+var redLevel = ColorLevel.new()
+
 @onready var light_rotate: Node2D = $LightRotate
 var DamageParticleScene = preload("res://player_particles.tscn")
 var ExplosivePlayerScene = preload("res://explosive_player.tscn")
 
-enum colors { red, yellow, blue }
+func LevelUp() -> String:
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
 
+	# Pick random color and feature enums
+	var color_index = rng.randi_range(0, 2)
+	var feature_index = rng.randi_range(0, 1)
+	
+	var rand_for_speed = rng.randi_range(0,5)
+	
+	if rand_for_speed == 5:
+		speed += 50
+		print("+ Speed!")
+		return "+Speed!"
+	
+	
+	var result_text : String = ""
+	
+	var enumColorRandSelected : LightColour
+	var colorSelected : ColorLevel
+	
+	if color_index == 0:
+		result_text = "Yellow "
+		colorSelected = yellowLevel
+		enumColorRandSelected = LightColour.YELLOW
+	elif color_index == 1:
+		result_text = "Blue "
+		colorSelected = blueLevel
+		enumColorRandSelected = LightColour.BLUE
+	elif color_index == 2:
+		result_text = "Red "
+		colorSelected = redLevel
+		enumColorRandSelected = LightColour.RED
+		
+	if feature_index == 0:
+		result_text += "+50 Radius!"
+		colorSelected.radius += 50
+	if feature_index == 1:
+		result_text += "+1 Width!"
+		colorSelected.segments += 1
+
+	if light_colour == enumColorRandSelected:
+		$LightRotate/LineCone.generate_cone(colorSelected)
+	print(result_text)
+	return result_text
+	
+	
+	
 func _ready() -> void:
 	light_colour = LightColour.BLUE
 	$LightRotate/LineCone/LightColor.color = GameColours.BLUE
 	$Inside.modulate = GameColours.BLUE
 	$LightRotate/LineCone/LightColor.color.a = 0.5
+	$LightRotate/LineCone.generate_cone(blueLevel)
 
 func _physics_process(delta: float) -> void:
 	var direction = Input.get_vector("p1_left", "p1_right","p1_up","p1_down");
@@ -44,43 +95,54 @@ func _physics_process(delta: float) -> void:
 		light_colour = LightColour.BLUE
 		$LightRotate/LineCone/LightColor.color = GameColours.BLUE
 		$Inside.modulate = GameColours.BLUE
+		$LightRotate/LineCone.generate_cone(blueLevel)
 		
 	if(Input.is_action_just_released("p1_color_red")):
 		light_colour = LightColour.RED
 		$LightRotate/LineCone/LightColor.color = GameColours.RED
 		$Inside.modulate = GameColours.RED
+		$LightRotate/LineCone.generate_cone(redLevel)
+		
 	if(Input.is_action_just_released("p1_color_yellow")):
 		light_colour = LightColour.YELLOW
 		$LightRotate/LineCone/LightColor.color = Color.YELLOW
 		$Inside.modulate = Color.YELLOW
+		$LightRotate/LineCone.generate_cone(yellowLevel)
 	
 	if (Input.is_action_just_pressed("p1_cycle_color_left")):
 		if light_colour == LightColour.RED:
 			light_colour = LightColour.BLUE
 			$LightRotate/LineCone/LightColor.color = Color.BLUE
 			$Inside.modulate = Color.BLUE
+			$LightRotate/LineCone.generate_cone(blueLevel)
 		elif light_colour == LightColour.YELLOW:
 			light_colour = LightColour.RED
 			$LightRotate/LineCone/LightColor.color = Color.RED
 			$Inside.modulate = Color.RED
+			$LightRotate/LineCone.generate_cone(redLevel)
 		elif light_colour == LightColour.BLUE:
 			light_colour = LightColour.YELLOW
 			$LightRotate/LineCone/LightColor.color = Color.YELLOW
 			$Inside.modulate = Color.YELLOW
-			
+			$LightRotate/LineCone.generate_cone(yellowLevel)
+	if (Input.is_action_just_pressed("level_up"))	:
+		LevelUp()
 	if (Input.is_action_just_pressed("p1_cycle_color_right")):
 		if light_colour == LightColour.RED:
 			light_colour = LightColour.YELLOW
 			$LightRotate/LineCone/LightColor.color = Color.YELLOW
 			$Inside.modulate = Color.YELLOW
+			$LightRotate/LineCone.generate_cone(yellowLevel)
 		elif light_colour == LightColour.YELLOW:
 			light_colour = LightColour.BLUE
 			$LightRotate/LineCone/LightColor.color = Color.BLUE
 			$Inside.modulate = Color.BLUE
+			$LightRotate/LineCone.generate_cone(blueLevel)
 		elif light_colour == LightColour.BLUE:
 			light_colour = LightColour.RED
 			$LightRotate/LineCone/LightColor.color = Color.RED
 			$Inside.modulate = Color.RED
+			$LightRotate/LineCone.generate_cone(redLevel)
 			
 	$LightRotate/LineCone/LightColor.color.a = 0.5
 	velocity = direction * speed;

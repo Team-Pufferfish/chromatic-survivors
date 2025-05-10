@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://ch76b74jwc7xw"]
+[gd_scene load_steps=7 format=3 uid="uid://ch76b74jwc7xw"]
 
 [ext_resource type="Script" uid="uid://b0f4vc4voec0e" path="res://Scripts/Player.gd" id="1_kyqiw"]
+[ext_resource type="Script" uid="uid://bcp4vej6mglhl" path="res://Scripts/line_cone.gd" id="3_dewec"]
 [ext_resource type="Texture2D" uid="uid://pwttaoyf1od1" path="res://circle-svgrepo-com.svg" id="4_5ixxa"]
 [ext_resource type="Texture2D" uid="uid://bjufdy268v7op" path="res://circle-black-geometric-shape-svgrepo-com.svg" id="5_nn08x"]
 
@@ -9,12 +10,6 @@ radius = 32.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5ixxa"]
 radius = 33.0
-
-[sub_resource type="Gradient" id="Gradient_gntrk"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_dewec"]
-gradient = SubResource("Gradient_gntrk")
 
 [node name="Player" type="CharacterBody2D"]
 motion_mode = 1
@@ -42,15 +37,13 @@ texture = ExtResource("5_nn08x")
 [node name="LineCone" type="Area2D" parent="LightRotate"]
 collision_layer = 0
 collision_mask = 2
+script = ExtResource("3_dewec")
 
 [node name="Polygon2D" type="CollisionPolygon2D" parent="LightRotate/LineCone"]
-position = Vector2(40, 0)
 polygon = PackedVector2Array(11, -1, 247, -78, 250, 77)
 
 [node name="LightColor" type="Polygon2D" parent="LightRotate/LineCone"]
-position = Vector2(40, 0)
 color = Color(1, 1, 1, 0.286275)
-texture = SubResource("GradientTexture1D_dewec")
 polygon = PackedVector2Array(11, -1, 247, -78, 250, 77)
 uv = PackedVector2Array(11, -1, 247, -78, 250, 77)
 
