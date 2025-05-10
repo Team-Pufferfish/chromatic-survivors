@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://bea6vfscfhtg1"]
+
+[ext_resource type="Script" uid="uid://dvkn5xxpiourg" path="res://Scripts/Health.gd" id="1_2docl"]
+[ext_resource type="Texture2D" uid="uid://bmxgtl28nir6x" path="res://plus-svgrepo-com.svg" id="2_2docl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3so38"]
+radius = 6.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rg653"]
+radius = 45.0
+
+[node name="Health" type="Node2D"]
+script = ExtResource("1_2docl")
+
+[node name="Diamond" type="Sprite2D" parent="."]
+scale = Vector2(0.017, 0.017)
+texture = ExtResource("2_2docl")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_3so38")
+
+[node name="Area2D2" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+shape = SubResource("CircleShape2D_rg653")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_2_body_entered"]

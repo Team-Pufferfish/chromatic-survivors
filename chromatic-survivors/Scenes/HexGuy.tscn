@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://ok4yg7vw7qwf" path="res://hex-filled.svg" id="4_f1gbc"]
 [ext_resource type="Script" path="res://Scripts/spawner.gd" id="5_f1gbc"]
 [ext_resource type="Texture2D" uid="uid://bmmyyqswgmcqy" path="res://hex-outline.svg" id="5_rxg1h"]
-[ext_resource type="PackedScene" path="res://Scenes/MiniHexGuy.tscn" id="6_rxg1h"]
+[ext_resource type="PackedScene" uid="uid://cg7xqwbgskih7" path="res://Scenes/MiniHexGuy.tscn" id="6_rxg1h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yomy8"]
 radius = 29.0172

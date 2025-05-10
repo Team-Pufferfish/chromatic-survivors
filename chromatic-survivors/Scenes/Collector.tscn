@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://c03u5584dgyxm"]
+
+[ext_resource type="Script" uid="uid://ccnga0e71tkcq" path="res://Scripts/Collector.gd" id="1_ttxwa"]
+[ext_resource type="Texture2D" uid="uid://dw3po76hub1o" path="res://Scripts/diamond-svgrepo-com.svg" id="2_ttxwa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3so38"]
+radius = 6.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rg653"]
+radius = 45.0
+
+[node name="Collector" type="Node2D"]
+script = ExtResource("1_ttxwa")
+
+[node name="Diamond" type="Sprite2D" parent="."]
+position = Vector2(0, 1)
+scale = Vector2(0.015, 0.015)
+texture = ExtResource("2_ttxwa")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_3so38")
+
+[node name="Area2D2" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+shape = SubResource("CircleShape2D_rg653")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_2_body_entered"]

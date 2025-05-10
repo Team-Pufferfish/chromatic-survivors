@@ -29,6 +29,7 @@ func _ready() -> void:
 	$LightRotate/LineCone/LightColor.color = GameColours.BLUE
 	$Inside.modulate = GameColours.BLUE
 	$LightRotate/LineCone/LightColor.color.a = 0.5
+	self.add_to_group("Player")
 
 func _physics_process(delta: float) -> void:
 	var direction = Input.get_vector("p1_left", "p1_right","p1_up","p1_down");
@@ -91,10 +92,10 @@ func _physics_process(delta: float) -> void:
 	if enemies_colliding.size() > 0:
 		CURRENT_HEALTH -= damage_rate * enemies_colliding.size()
 		CURRENT_HEALTH = max(CURRENT_HEALTH, 0)
-		$Inside.scale = Vector2(CURRENT_HEALTH / MAX_HEALTH * 0.06,CURRENT_HEALTH / MAX_HEALTH * 0.06)
 		
 		# Trigger white damage particles
 		spawn_damage_particles()
+	$Inside.scale = Vector2(CURRENT_HEALTH / MAX_HEALTH * 0.06,CURRENT_HEALTH / MAX_HEALTH * 0.06)
 		
 	if CURRENT_HEALTH <= 0:
 		emit_signal("player_is_dead")
