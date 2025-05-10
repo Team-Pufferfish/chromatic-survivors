@@ -25,14 +25,14 @@ func _process(delta):
 
 func setup_waves():
 	waves = [
-		{
+		{#blue -1
 			"spawn_rate": 1,
 			"max_enemies": 10,
 			"enemies": [
 				{"type": EnemyType.SQUARE, "red": 0, "yellow": 0, "blue": 10, "speed": 50, "chance": 1.0 },
 			]
 		},
-		{
+		{# red/yellow
 			"spawn_rate": 1,
 			"max_enemies": 25,
 			"enemies": [
@@ -40,7 +40,7 @@ func setup_waves():
 				{ "type": EnemyType.SQUARE, "red": 0,  "yellow": 15, "blue": 0, "speed": 75, "chance": 0.7 },
 			]
 		},
-				{
+		{#primary -3
 			"spawn_rate": 0.75,
 			"max_enemies": 30,
 			"enemies": [
@@ -49,36 +49,30 @@ func setup_waves():
 				{"type": EnemyType.SQUARE,  "red": 0,  "yellow": 0, "blue": 10, "speed": 50, "chance": 0.5 }
 			]
 		},
-		{
+		{#green? -4
 			"spawn_rate": 1,
 			"max_enemies": 35,
 			"enemies": [
 					{"type": EnemyType.SQUARE, "red": 0,  "yellow": 15, "blue": 10, "speed": 62, "chance": 0.5 },
 			]
 		},
-		{
+		{#star intro -5
 			"spawn_rate": 1,
 			"max_enemies": 40,
+			"boss": { "type": EnemyType.STAR, "red": 0, "yellow": 15, "blue": 0, "speed": 100, "chance": 1.0 },
+			"enemies": [
+				{"type": EnemyType.SQUARE,  "red": 0, "yellow": 15, "blue": 0, "speed": 75, "chance": 0.7 },
+				{"type": EnemyType.SQUARE, "red": 0,  "yellow": 0, "blue": 10, "speed": 50, "chance": 0.3 },
+			]
+		},
+		{
+			"spawn_rate": 1, #red and purple -6
+			"max_enemies": 45,
 			"boss": { "type": EnemyType.STAR, "red": 20, "yellow": 0, "blue": 0, "speed": 100, "chance": 1.0 },
 			"enemies": [
-				{"type": EnemyType.SQUARE,  "red": 0, "yellow": 15, "blue": 0, "speed": 75, "chance": 1.0 },
-			]
-		},
-		{
-			"spawn_rate": 1, #yellow and green
-			"max_enemies": 45,
-			"enemies": [
-				{"type": EnemyType.SQUARE, "red": 0, "yellow": 0, "blue": 10, "speed": 50, "chance": 0.5 },
-				{"type": EnemyType.SQUARE, "red": 0,  "yellow": 15, "blue": 10, "speed": 62, "chance": 0.5 },
-			]
-		},
-		{
-			"spawn_rate": 1, #yllow start + red/blue
-			"max_enemies": 50,
-			"boss": { "type": EnemyType.STAR, "red": 0, "yellow": 25, "blue": 0, "speed": 75, "chance": 1.0 },
-			"enemies": [
-				{"type": EnemyType.SQUARE, "red": 10, "yellow": 0, "blue": 0, "speed": 100, "chance": 0.5 },
-				{"type": EnemyType.SQUARE, "red": 0,  "yellow": 0, "blue": 10, "speed": 50, "chance": 0.5 }
+				{"type": EnemyType.SQUARE,  "red": 10, "yellow": 0, "blue": 0, "speed": 100, "chance": 0.25 },
+				{"type": EnemyType.SQUARE,  "red": 10, "yellow": 0, "blue": 10, "speed": 75, "chance": 0.50 },
+				{"type": EnemyType.SQUARE,  "red": 0, "yellow": 0, "blue": 10, "speed": 50, "chance": 0.25 },
 			]
 		},
 		{#bees?!? -7

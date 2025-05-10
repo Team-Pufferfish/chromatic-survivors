@@ -114,7 +114,6 @@ player_path = NodePath("../Player")
 [node name="WaveManager" type="Node" parent="."]
 script = ExtResource("4_kldst")
 enemy_spawner_path = NodePath("../EnemyManager")
-wave_interval = null
 
 [node name="Health" parent="." instance=ExtResource("8_bf53h")]
 position = Vector2(-1391, 265)
