@@ -10,9 +10,9 @@ var CURRENT_HEALTH = 100.0;
 var last_aim = Vector2.RIGHT
 var damage_rate = 2.0;
 
-var light_damage_interval := 0.25  # seconds between hits
+var light_damage_interval := 0.05  # seconds between hits
 var light_damage_timer := 0.0
-var light_damage_amount = 2;
+var light_damage_amount = 1;
 
 var light_colour = LightColour.RED
 
@@ -21,7 +21,9 @@ signal player_is_dead
 @onready var light_rotate: Node2D = $LightRotate
 
 func _ready() -> void:
-	$Graphic.fill = 1
+	light_colour = LightColour.BLUE
+	$LightRotate/LineCone/LightColor.color = Color.BLUE
+	$Inside.modulate = Color.BLUE
 
 func _physics_process(delta: float) -> void:
 	var direction = Input.get_vector("p1_left", "p1_right","p1_up","p1_down");
@@ -36,13 +38,16 @@ func _physics_process(delta: float) -> void:
 	if(Input.is_action_just_released("p1_color_blue")):
 		light_colour = LightColour.BLUE
 		$LightRotate/LineCone/LightColor.color = Color.BLUE
+		$Inside.modulate = Color.BLUE
 		
 	if(Input.is_action_just_released("p1_color_red")):
 		light_colour = LightColour.RED
 		$LightRotate/LineCone/LightColor.color = Color.RED
+		$Inside.modulate = Color.RED
 	if(Input.is_action_just_released("p1_color_yellow")):
 		light_colour = LightColour.YELLOW
 		$LightRotate/LineCone/LightColor.color = Color.YELLOW
+		$Inside.modulate = Color.YELLOW
 	$LightRotate/LineCone/LightColor.color.a = 0.5
 	
 	velocity = direction * speed;
@@ -53,7 +58,7 @@ func _physics_process(delta: float) -> void:
 	if enemies_colliding.size() > 0:
 		CURRENT_HEALTH -= damage_rate * enemies_colliding.size()
 		CURRENT_HEALTH = max(CURRENT_HEALTH, 0)
-		$Graphic.fill = CURRENT_HEALTH / MAX_HEALTH
+		$Inside.scale = Vector2(CURRENT_HEALTH / MAX_HEALTH * 0.06,CURRENT_HEALTH / MAX_HEALTH * 0.06)
 		
 	if CURRENT_HEALTH <= 0:
 		emit_signal("player_is_dead")
