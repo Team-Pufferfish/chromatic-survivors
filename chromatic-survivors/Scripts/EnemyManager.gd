@@ -11,8 +11,8 @@ enum EnemyType { SQUARE, STAR, HEX, TRIANGLE }
 var enemy_scenes = {
 	EnemyType.SQUARE: preload("res://Scenes/enemy.tscn"),
 	EnemyType.STAR: preload("res://Scenes/StarGuy.tscn"),
-	#EnemyType.HEX: preload("res://Enemies/Hex.tscn"),
-	#EnemyType.TRIANGLE: preload("res://Enemies/Triangle.tscn")
+	EnemyType.HEX: preload("res://Scenes/HexGuy.tscn"),
+	#EnemyType.TRIANGLE: preload("res://Scenes/Triangle.tscn")
 }
 
 # Internal state

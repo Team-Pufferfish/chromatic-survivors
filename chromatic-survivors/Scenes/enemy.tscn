@@ -3,12 +3,13 @@
 [ext_resource type="Script" uid="uid://dm700m5ubkkes" path="res://Scripts/Enemy.gd" id="1_hghv2"]
 [ext_resource type="PackedScene" uid="uid://c42j0fn0souip" path="res://Scenes/ColorSquare.tscn" id="2_1f0kj"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1f0kj"]
-size = Vector2(60, 60)
+[sub_resource type="CircleShape2D" id="CircleShape2D_1f0kj"]
+radius = 31.0161
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 2
+motion_mode = 1
 script = ExtResource("1_hghv2")
 
 [node name="Graphic" parent="." instance=ExtResource("2_1f0kj")]
@@ -18,4 +19,4 @@ blue_value = 1.0
 red_value = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_1f0kj")
+shape = SubResource("CircleShape2D_1f0kj")

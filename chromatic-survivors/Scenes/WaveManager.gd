@@ -28,7 +28,7 @@ func setup_waves():
 		{
 			"spawn_rate": 2.0,
 			"max_enemies": 10,
-			"boss": { "type": EnemyType.STAR, "red": 20, "yellow": 0, "blue": 0, "speed": 100, "chance": 1.0 },
+			"boss": { "type": EnemyType.HEX, "red": 0, "yellow": 20, "blue": 0, "speed": 150, "chance": 1.0 },
 			"enemies": [
 				{"type": EnemyType.SQUARE, "red": 0, "yellow": 0, "blue": 10, "speed": 50, "chance": 1.0 },
 			]
