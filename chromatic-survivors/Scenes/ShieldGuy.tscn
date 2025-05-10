@@ -1,0 +1,75 @@
+[gd_scene load_steps=8 format=3 uid="uid://b4fisber7xq6t"]
+
+[ext_resource type="Script" uid="uid://dm700m5ubkkes" path="res://Scripts/Enemy.gd" id="1_nc0q4"]
+[ext_resource type="Script" uid="uid://b0of6yayu6daf" path="res://Scripts/ShieldAura.gd" id="2_nc0q4"]
+[ext_resource type="Script" uid="uid://cyheouhoxpma" path="res://Scripts/sprite_color_mapper.gd" id="3_67vwr"]
+[ext_resource type="Texture2D" uid="uid://c0qcr5nlro1qq" path="res://shield-filled.svg" id="4_nc0q4"]
+[ext_resource type="Texture2D" uid="uid://cn5edvr6ld2vo" path="res://shield.svg" id="5_ea10p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mtws3"]
+radius = 146.086
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yomy8"]
+radius = 29.0172
+
+[node name="ShieldGuy" type="CharacterBody2D" groups=["ShieldGuy"]]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_nc0q4")
+
+[node name="Aura" type="Node2D" parent="."]
+script = ExtResource("2_nc0q4")
+
+[node name="EffectArea" type="Area2D" parent="Aura"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Aura/EffectArea"]
+shape = SubResource("CircleShape2D_mtws3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_yomy8")
+
+[node name="Graphic" type="Node2D" parent="."]
+scale = Vector2(0.1, 0.1)
+script = ExtResource("3_67vwr")
+
+[node name="Inside" type="Node2D" parent="Graphic"]
+
+[node name="Green" type="Sprite2D" parent="Graphic/Inside"]
+modulate = Color(0, 1, 0, 1)
+scale = Vector2(2.401e-05, 2.401e-05)
+texture = ExtResource("4_nc0q4")
+
+[node name="Blue" type="Sprite2D" parent="Graphic/Inside"]
+modulate = Color(0, 0, 1, 1)
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("4_nc0q4")
+
+[node name="Red" type="Sprite2D" parent="Graphic/Inside"]
+modulate = Color(1, 0, 0, 1)
+scale = Vector2(0.0049, 0.0049)
+texture = ExtResource("4_nc0q4")
+
+[node name="Yellow" type="Sprite2D" parent="Graphic/Inside"]
+modulate = Color(1, 1, 0, 1)
+scale = Vector2(0.000343, 0.000343)
+texture = ExtResource("4_nc0q4")
+
+[node name="Orange" type="Sprite2D" parent="Graphic/Inside"]
+modulate = Color(1, 0.45098, 0, 1)
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("4_nc0q4")
+
+[node name="Purple" type="Sprite2D" parent="Graphic/Inside"]
+modulate = Color(1, 0, 1, 1)
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("4_nc0q4")
+
+[node name="Brown" type="Sprite2D" parent="Graphic/Inside"]
+modulate = Color(0.745098, 0.454902, 0.207843, 1)
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("4_nc0q4")
+
+[node name="Outside" type="Sprite2D" parent="Graphic"]
+texture = ExtResource("5_ea10p")
