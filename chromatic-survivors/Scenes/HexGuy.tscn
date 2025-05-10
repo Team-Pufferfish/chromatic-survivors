@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://dxarjw8gw7xi6"]
 
 [ext_resource type="Script" uid="uid://dm700m5ubkkes" path="res://Scripts/Enemy.gd" id="1_f1gbc"]
-[ext_resource type="Script" path="res://Scripts/sprite_color_mapper.gd" id="3_amatc"]
+[ext_resource type="Script" uid="uid://cyheouhoxpma" path="res://Scripts/sprite_color_mapper.gd" id="3_amatc"]
 [ext_resource type="Texture2D" uid="uid://ok4yg7vw7qwf" path="res://hex-filled.svg" id="4_f1gbc"]
-[ext_resource type="Script" path="res://Scripts/spawner.gd" id="5_f1gbc"]
+[ext_resource type="Script" uid="uid://dopuyl37v4s7i" path="res://Scripts/spawner.gd" id="5_f1gbc"]
 [ext_resource type="Texture2D" uid="uid://bmmyyqswgmcqy" path="res://hex-outline.svg" id="5_rxg1h"]
 [ext_resource type="PackedScene" uid="uid://cg7xqwbgskih7" path="res://Scenes/MiniHexGuy.tscn" id="6_rxg1h"]
 
