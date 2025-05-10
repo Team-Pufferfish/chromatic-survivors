@@ -3,7 +3,7 @@ extends CharacterBody2D
 enum LightColour {RED, BLUE, YELLOW}
 
 @onready var player = get_node("/root/Game/Player")
-
+var DamageParticleScene = preload("res://damage_particles.tscn")
 @export var speed : int = 75
 
 @export var MAX_BLUE : float 
@@ -73,20 +73,20 @@ func get_color_from_stats() -> Color:
 	if has_yellow:
 		return Color.YELLOW
 	return Color.WHITE
-
-func set_particle_colour(colour: int) -> void:
-	match colour:
-		LightColour.RED:
-			$DamageParticles.modulate = Color.RED
-		LightColour.BLUE:
-			$DamageParticles.modulate = Color.BLUE
-		LightColour.YELLOW:
-			$DamageParticles.modulate = Color.YELLOW
 	
 func trigger_damage_particles(from_direction: Vector2, colour: int) -> void:
-	var particles = $DamageParticles
-	if particles:
-		var particle_direction = from_direction.normalized()
-		particles.rotation = particle_direction.angle()
-		set_particle_colour(colour)
-		particles.restart()
+	var particles = DamageParticleScene.instantiate()
+	particles.global_position = global_position
+	
+	# Set color based on damage type
+	match colour:
+		LightColour.RED:
+			particles.modulate = Color.RED
+		LightColour.BLUE:
+			particles.modulate = Color.BLUE
+		LightColour.YELLOW:
+			particles.modulate = Color.YELLOW
+	
+	# Optional: rotate in direction of damage
+	particles.rotation = from_direction.normalized().angle()
+	get_tree().current_scene.add_child(particles)
