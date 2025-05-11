@@ -82,6 +82,18 @@ func setup_waves():
 				{ "type": EnemyType.STAR, "red": 10, "yellow": 0, "blue": 0, "speed": 100, "chance": 0.125 },
 			]
 		},
+		{#starboys
+			"spawn_rate": 1,
+			"max_enemies": 50,
+			"enemies": [
+				{"type": EnemyType.SQUARE,  "red": 10, "yellow": 0, "blue": 0, "speed": 100, "chance": 0.25 },
+				{ "type": EnemyType.SQUARE, "red": 0,  "yellow": 15, "blue": 0, "speed": 75, "chance": 0.25 },
+				{"type": EnemyType.SQUARE,  "red": 0,  "yellow": 0, "blue": 10, "speed": 50, "chance": 0.25 },
+				{ "type": EnemyType.STAR, "red": 0, "yellow": 15, "blue": 0, "speed": 75, "chance": 0.1 },
+				{ "type": EnemyType.STAR, "red": 10, "yellow": 0, "blue": 0, "speed": 100, "chance": 0.1 },
+				{ "type": EnemyType.STAR, "red": 0, "yellow": 0, "blue": 10, "speed": 50, "chance": 0.05 },
+			]
+		},
 		{#yellowhex
 			"spawn_rate": 1,
 			"max_enemies": 50,
@@ -95,6 +107,30 @@ func setup_waves():
 				{ "type": EnemyType.STAR, "red": 0, "yellow": 0, "blue": 10, "speed": 50, "chance": 0.05 },
 			]
 		},
+		{#red hex
+			"spawn_rate": 1,
+			"max_enemies": 55,
+			"boss": { "type": EnemyType.HEX, "red": 20, "yellow": 25, "blue": 0, "speed": 100, "chance": 1.0 },
+			"enemies": [
+				{"type": EnemyType.SQUARE,  "red": 10, "yellow": 0, "blue": 0, "speed": 100, "chance": 0.2 },
+				{ "type": EnemyType.SQUARE, "red": 0,  "yellow": 15, "blue": 0, "speed": 75, "chance": 0.2 },
+				{"type": EnemyType.SQUARE,  "red": 0,  "yellow": 0, "blue": 10, "speed": 50, "chance": 0.2 },
+				{ "type": EnemyType.HEX, "red": 10, "yellow": 0, "blue": 0, "speed": 100, "chance": 0.05 },
+
+			]
+		},
+		{#blue hex		
+			"spawn_rate": 1,
+			"max_enemies": 55,
+			"boss": { "type": EnemyType.HEX, "red": 0, "yellow": 0, "blue": 20, "speed": 50, "chance": 1.0 },
+			"enemies": [
+				{"type": EnemyType.SQUARE,  "red": 10, "yellow": 0, "blue": 0, "speed": 100, "chance": 0.2 },
+				{ "type": EnemyType.SQUARE, "red": 0,  "yellow": 15, "blue": 0, "speed": 75, "chance": 0.2 },
+				{"type": EnemyType.SQUARE,  "red": 0,  "yellow": 0, "blue": 10, "speed": 50, "chance": 0.2 },
+				{ "type": EnemyType.HEX, "red": 10, "yellow": 0, "blue": 0, "speed": 100, "chance": 0.05 },
+				{ "type": EnemyType.HEX, "red": 0, "yellow": 15, "blue": 0, "speed": 75, "chance": 0.05 },
+			]
+		},
 		{#hexilation
 			"spawn_rate": 1,
 			"max_enemies": 55,
@@ -102,14 +138,51 @@ func setup_waves():
 				{"type": EnemyType.SQUARE,  "red": 10, "yellow": 0, "blue": 0, "speed": 100, "chance": 0.2 },
 				{ "type": EnemyType.SQUARE, "red": 0,  "yellow": 15, "blue": 0, "speed": 75, "chance": 0.2 },
 				{"type": EnemyType.SQUARE,  "red": 0,  "yellow": 0, "blue": 10, "speed": 50, "chance": 0.2 },
-				{ "type": EnemyType.STAR, "red": 0, "yellow": 15, "blue": 0, "speed": 75, "chance": 0.01 },
-				{ "type": EnemyType.STAR, "red": 10, "yellow": 0, "blue": 0, "speed": 100, "chance": 0.1 },
-				{ "type": EnemyType.STAR, "red": 0, "yellow": 0, "blue": 10, "speed": 50, "chance": 0.05 },
 				{ "type": EnemyType.HEX, "red": 10, "yellow": 0, "blue": 0, "speed": 100, "chance": 0.05 },
 				{ "type": EnemyType.HEX, "red": 0, "yellow": 15, "blue": 0, "speed": 75, "chance": 0.05 },
 				{ "type": EnemyType.HEX, "red": 0, "yellow": 0, "blue": 10, "speed": 50, "chance": 0.05 },
 			]
 		},
+		{#sheildking blue
+			"spawn_rate": 1,
+			"max_enemies": 55,
+			"boss": { "type": EnemyType.SHEILD, "red": 0, "yellow": 0, "blue": 50, "speed": 50, "chance": 1.0 },
+			"enemies": [
+				{"type": EnemyType.SQUARE,  "red": 10, "yellow": 0, "blue": 0, "speed": 100, "chance": 0.2 },
+				{ "type": EnemyType.SQUARE, "red": 0,  "yellow": 15, "blue": 0, "speed": 75, "chance": 0.2 },
+				{"type": EnemyType.SQUARE,  "red": 0,  "yellow": 0, "blue": 10, "speed": 50, "chance": 0.2 },
+				{ "type": EnemyType.HEX, "red": 10, "yellow": 0, "blue": 0, "speed": 100, "chance": 0.05 },
+				{ "type": EnemyType.HEX, "red": 0, "yellow": 15, "blue": 0, "speed": 75, "chance": 0.05 },
+				{ "type": EnemyType.HEX, "red": 0, "yellow": 0, "blue": 10, "speed": 50, "chance": 0.05 },
+			]
+		},
+				{#sheildking red
+			"spawn_rate": 1,
+			"max_enemies": 55,
+			"boss": { "type": EnemyType.SHEILD, "red": 50, "yellow": 0, "blue": 0, "speed": 100, "chance": 1.0 },
+			"enemies": [
+				{"type": EnemyType.SQUARE,  "red": 10, "yellow": 0, "blue": 0, "speed": 100, "chance": 0.2 },
+				{ "type": EnemyType.SQUARE, "red": 0,  "yellow": 15, "blue": 0, "speed": 75, "chance": 0.2 },
+				{"type": EnemyType.SQUARE,  "red": 0,  "yellow": 0, "blue": 10, "speed": 50, "chance": 0.2 },
+				{ "type": EnemyType.HEX, "red": 10, "yellow": 0, "blue": 0, "speed": 100, "chance": 0.05 },
+				{ "type": EnemyType.HEX, "red": 0, "yellow": 15, "blue": 0, "speed": 75, "chance": 0.05 },
+				{ "type": EnemyType.HEX, "red": 0, "yellow": 0, "blue": 10, "speed": 50, "chance": 0.05 },
+			]
+		},
+				{#sheildking yellow
+			"spawn_rate": 1,
+			"max_enemies": 55,
+			"boss": { "type": EnemyType.SHEILD, "red": 0, "yellow": 75, "blue": 50, "speed": 75, "chance": 1.0 },
+			"enemies": [
+				{"type": EnemyType.SQUARE,  "red": 10, "yellow": 0, "blue": 0, "speed": 100, "chance": 0.2 },
+				{ "type": EnemyType.SQUARE, "red": 0,  "yellow": 15, "blue": 0, "speed": 75, "chance": 0.2 },
+				{"type": EnemyType.SQUARE,  "red": 0,  "yellow": 0, "blue": 10, "speed": 50, "chance": 0.2 },
+				{ "type": EnemyType.HEX, "red": 10, "yellow": 0, "blue": 0, "speed": 100, "chance": 0.05 },
+				{ "type": EnemyType.HEX, "red": 0, "yellow": 15, "blue": 0, "speed": 75, "chance": 0.05 },
+				{ "type": EnemyType.HEX, "red": 0, "yellow": 0, "blue": 10, "speed": 50, "chance": 0.05 },
+			]
+		},
+
 		{#send in everything
 			"spawn_rate": 1.0,
 			"max_enemies": 100,
