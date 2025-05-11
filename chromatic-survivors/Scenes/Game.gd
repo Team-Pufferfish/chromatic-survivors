@@ -35,6 +35,9 @@ func _on_player_player_is_dead() -> void:
 	totals.show()
 	instructions.show()
 	player_alive = false
+
+func _on_enemy_died() -> void:
+	$DeadEnemyPlayer.play()
 	
 
 func _on_loot_get(colour: LightColour) -> void:

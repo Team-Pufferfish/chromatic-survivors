@@ -21,6 +21,10 @@ window/size/viewport_width=2000
 window/size/viewport_height=1200
 window/stretch/mode="canvas_items"
 
+[gui]
+
+theme/custom_font="uid://drxhx80jntu2k"
+
 [input]
 
 p1_up={

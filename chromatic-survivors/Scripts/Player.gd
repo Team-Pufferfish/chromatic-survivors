@@ -99,7 +99,7 @@ func LevelUp() -> String:
 		colorSelected.radius += 100
 	if feature_index == 1:
 		result_text += "+ Width!"
-		colorSelected.segments += 3
+		colorSelected.segments += 2
 
 	if light_colour == enumColorRandSelected:
 		$LightRotate/LineCone.generate_cone(colorSelected)

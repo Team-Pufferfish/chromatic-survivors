@@ -36,8 +36,8 @@ func setup_waves():
 			"spawn_rate": 1,
 			"max_enemies": 25,
 			"enemies": [
-				{ "type": EnemyType.SQUARE, "red": 10, "yellow": 0, "blue": 0, "speed": 100, "chance": 0.3 },
-				{"type": EnemyType.SQUARE,  "red": 0,  "yellow": 0, "blue": 10, "speed": 50, "chance": 0.5 }
+				{ "type": EnemyType.SQUARE, "red": 10, "yellow": 0, "blue": 0, "speed": 100, "chance": 0.25},
+				{"type": EnemyType.SQUARE,  "red": 0,  "yellow": 0, "blue": 10, "speed": 50, "chance": 0.75 }
 			]
 		},
 		{#primary -3
@@ -47,6 +47,46 @@ func setup_waves():
 				{"type": EnemyType.SQUARE,  "red": 10, "yellow": 0, "blue": 0, "speed": 100, "chance": 0.25 },
 				{ "type": EnemyType.SQUARE, "red": 0,  "yellow": 15, "blue": 0, "speed": 75, "chance": 0.25 },
 				{"type": EnemyType.SQUARE,  "red": 0,  "yellow": 0, "blue": 10, "speed": 50, "chance": 0.5 }
+			]
+		},
+		{#primary -3 even
+			"spawn_rate": 0.75,
+			"max_enemies": 30,
+			"enemies": [
+				{"type": EnemyType.SQUARE,  "red": 10, "yellow": 0, "blue": 0, "speed": 100, "chance": 0.33 },
+				{ "type": EnemyType.SQUARE, "red": 0,  "yellow": 15, "blue": 0, "speed": 75, "chance": 0.33 },
+				{"type": EnemyType.SQUARE,  "red": 0,  "yellow": 0, "blue": 10, "speed": 50, "chance": 0.33 }
+			]
+		},
+				{#primary - orange
+			"spawn_rate": 0.75,
+			"max_enemies": 30,
+			"enemies": [
+				{"type": EnemyType.SQUARE,  "red": 10, "yellow": 0, "blue": 0, "speed": 100, "chance": 0.25 },
+				{ "type": EnemyType.SQUARE, "red": 0,  "yellow": 15, "blue": 0, "speed": 75, "chance": 0.25 },
+				{"type": EnemyType.SQUARE,  "red": 0,  "yellow": 0, "blue": 10, "speed": 50, "chance": 0.25 },
+				{"type": EnemyType.SQUARE, "red": 10, "yellow": 15, "blue": 0, "speed": 100, "chance": 0.25 },
+			]
+		},
+				{#primary - green
+			"spawn_rate": 0.75,
+			"max_enemies": 30,
+			"enemies": [
+				{"type": EnemyType.SQUARE,  "red": 10, "yellow": 0, "blue": 0, "speed": 100, "chance": 0.25 },
+				{ "type": EnemyType.SQUARE, "red": 0,  "yellow": 15, "blue": 0, "speed": 75, "chance": 0.25 },
+				{"type": EnemyType.SQUARE,  "red": 0,  "yellow": 0, "blue": 10, "speed": 50, "chance": 0.25 },
+				{"type": EnemyType.SQUARE, "red": 0,  "yellow": 15, "blue": 10, "speed": 67, "chance": 0.25 },
+			]
+		},
+				{#primary -purple
+			"spawn_rate": 0.75,
+			"max_enemies": 30,
+			
+			"enemies": [
+				{"type": EnemyType.SQUARE,  "red": 10, "yellow": 0, "blue": 0, "speed": 100, "chance": 0.25 },
+				{ "type": EnemyType.SQUARE, "red": 0,  "yellow": 15, "blue": 0, "speed": 75, "chance": 0.25 },
+				{"type": EnemyType.SQUARE,  "red": 0,  "yellow": 0, "blue": 10, "speed": 50, "chance": 0.25 },
+				{"type": EnemyType.SQUARE, "red": 10,  "yellow": 0, "blue": 10, "speed": 75, "chance": 0.25 },
 			]
 		},
 		{#star

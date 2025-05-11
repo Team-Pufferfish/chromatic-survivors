@@ -3,6 +3,8 @@ extends Node2D
 @onready var spawn_timer = $SpawnTimer
 @export var thing_to_spawn: PackedScene
 @export var divider : int = 2
+@onready var hex_guy: CharacterBody2D = $".."
+
 func _ready():
 	spawn_timer.start()  # Just to be sure
 
@@ -12,7 +14,7 @@ func _on_spawn_timer_timeout():
 func spawn_thing():
 	var instance = thing_to_spawn.instantiate()
 	
-	instance.speed = 200
+	instance.speed = hex_guy.speed + 25
 	instance.CURRENT_BLUE = get_parent().CURRENT_BLUE / divider;
 	instance.CURRENT_RED = get_parent().CURRENT_RED / divider;
 	instance.CURRENT_YELLOW = get_parent().CURRENT_YELLOW / divider;

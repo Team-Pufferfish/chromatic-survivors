@@ -33,6 +33,10 @@ const HEALTH = preload("res://Scenes/Health.tscn")
 
 @export var MAX_YELLOW : float 
 @export var CURRENT_YELLOW : float 
+signal enemy_died
+
+func _ready() -> void:
+	enemy_died.connect(game._on_enemy_died)
 
 func playDamageSound():
 	if sfx_player.playing:
@@ -52,6 +56,7 @@ func _physics_process(_delta: float) -> void:
 	if is_instance_valid(player):
 		var player_direction = global_position.direction_to(player.global_position)
 		velocity = player_direction * speed
+		look_at(player.global_position)
 	
 	move_and_slide()
 	
@@ -81,6 +86,7 @@ func deal_damage(colour: int, amount: int, source_direction: Vector2 = Vector2.Z
 	if CURRENT_RED <= 0 and CURRENT_BLUE <= 0 and CURRENT_YELLOW <= 0:
 		spawn_explosion(colour)
 		maybe_spawn_loot(colour)
+		emit_signal("enemy_died")
 		queue_free()
 
 func maybe_spawn_loot(colour:int):
