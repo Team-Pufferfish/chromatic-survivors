@@ -1,0 +1,120 @@
+[gd_scene load_steps=9 format=3 uid="uid://cak6cvt1am1tx"]
+
+[ext_resource type="Script" uid="uid://csxue1pa6naow" path="res://Scenes/main_menu.gd" id="1_df05h"]
+[ext_resource type="Shader" uid="uid://5smg703hdxjb" path="res://Scenes/CRT.gdshader" id="1_ghw46"]
+[ext_resource type="PackedScene" uid="uid://dmx3v5w6di7s1" path="res://Scenes/ControllerSplash.tscn" id="2_8um5k"]
+[ext_resource type="Texture2D" uid="uid://dws4f005odk06" path="res://Scenes/pufferfish.png" id="2_df05h"]
+[ext_resource type="Texture2D" uid="uid://b3lybds8xml76" path="res://Scripts/8d0fdf_97682d4b4e464c6ea8a4e685e1e62693~mv2.png" id="3_8um5k"]
+[ext_resource type="Texture2D" uid="uid://dmcjsngqjkq8v" path="res://Scripts/c5d01f_4cd668a7cfae48a19dfa93625fe57a70~mv2.png" id="4_xim88"]
+
+[sub_resource type="Environment" id="Environment_koqhg"]
+background_mode = 3
+background_canvas_max_layer = 1
+glow_enabled = true
+glow_blend_mode = 0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cmrfp"]
+shader = ExtResource("1_ghw46")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.0
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.3
+shader_parameter/resolution = Vector2(1000, 600)
+shader_parameter/pixelate = true
+shader_parameter/roll = false
+shader_parameter/roll_speed = 0.0
+shader_parameter/roll_size = 0.0
+shader_parameter/roll_variation = 0.1
+shader_parameter/distort_intensity = 0.0
+shader_parameter/noise_opacity = 0.2
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.02
+shader_parameter/aberration = 0.01
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = false
+shader_parameter/warp_amount = 0.25
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.0
+shader_parameter/vignette_opacity = 0.5
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_df05h")
+controls_scene = ExtResource("2_8um5k")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Pufferfish" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(1842, 1050)
+rotation = -0.236657
+texture = ExtResource("2_df05h")
+
+[node name="8d0Fdf97682d4b4e464c6Ea8a4e685e1e62693~mv2" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(995, 266)
+scale = Vector2(0.765637, 0.765637)
+texture = ExtResource("3_8um5k")
+
+[node name="C5d01f4Cd668a7Cfae48a19Dfa93625Fe57a70~mv2" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(147, 999)
+rotation = 0.278933
+scale = Vector2(0.420441, 0.420441)
+texture = ExtResource("4_xim88")
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -93.0
+offset_top = -11.5
+offset_right = 93.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 128
+text = "CHROMATIC SURVIVORS"
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -183.0
+offset_top = -206.0
+offset_right = 184.0
+offset_bottom = -113.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Press [START] to Begin
+Controller Recommended!"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.99
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -297.0
+offset_top = -379.0
+offset_right = -103.0
+offset_bottom = -368.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 16
+text = "A TEAM PUFFISHER JOINT"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_koqhg")
+
+[node name="PostProcessingShader" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="PostProcessingShader"]
+material = SubResource("ShaderMaterial_cmrfp")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
