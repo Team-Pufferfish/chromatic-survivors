@@ -16,10 +16,6 @@ func _ready() -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	collect_loot()
-
-
-func _on_area_2d_2_body_entered(body: Node2D) -> void:
-	target = body
 	
 func _process(delta: float) -> void:
 	if target and is_instance_valid(target):

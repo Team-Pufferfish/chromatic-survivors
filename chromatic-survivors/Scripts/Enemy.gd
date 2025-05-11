@@ -62,7 +62,7 @@ func maybe_spawn_loot(colour:int):
 		var collect = COLLECTOR.instantiate()
 		collect.global_position = global_position
 		get_tree().current_scene.add_child(collect)
-	elif loot_chance % 10 == 0:
+	elif loot_chance % 25 == 0:
 		var health = HEALTH.instantiate()
 		health.global_position = global_position
 		get_tree().current_scene.add_child(health)

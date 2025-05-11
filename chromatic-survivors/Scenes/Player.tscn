@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ch76b74jwc7xw"]
+[gd_scene load_steps=8 format=3 uid="uid://ch76b74jwc7xw"]
 
 [ext_resource type="Script" uid="uid://b0f4vc4voec0e" path="res://Scripts/Player.gd" id="1_kyqiw"]
 [ext_resource type="Script" uid="uid://bcp4vej6mglhl" path="res://Scripts/line_cone.gd" id="3_dewec"]
@@ -8,6 +8,9 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_dewec"]
 radius = 32.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_nn08x"]
+radius = 102.64
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_5ixxa"]
 radius = 33.0
 
@@ -15,9 +18,17 @@ radius = 33.0
 motion_mode = 1
 script = ExtResource("1_kyqiw")
 speed = 150
+pickup = 200
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_dewec")
+
+[node name="PickupRadius" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="Range" type="CollisionShape2D" parent="PickupRadius"]
+shape = SubResource("CircleShape2D_nn08x")
 
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_layer = 0
@@ -43,7 +54,7 @@ script = ExtResource("3_dewec")
 polygon = PackedVector2Array(11, -1, 247, -78, 250, 77)
 
 [node name="LightColor" type="Polygon2D" parent="LightRotate/LineCone"]
-color = Color(1, 1, 1, 0.286275)
+color = Color(1, 1, 1, 0.0980392)
 polygon = PackedVector2Array(11, -1, 247, -78, 250, 77)
 uv = PackedVector2Array(11, -1, 247, -78, 250, 77)
 
@@ -55,3 +66,5 @@ texture = ExtResource("4_5ixxa")
 modulate = Color(0, 0.0431373, 1, 1)
 scale = Vector2(0.06, 0.06)
 texture = ExtResource("5_nn08x")
+
+[connection signal="area_entered" from="PickupRadius" to="." method="_on_pickup_radius_body_entered"]

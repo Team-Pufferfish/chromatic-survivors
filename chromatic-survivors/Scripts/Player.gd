@@ -4,6 +4,7 @@ enum LightColour {RED, BLUE, YELLOW}
 
 @export var speed : int = 300
 @export var brake : int = 15
+@export var pickup : int = 50
 
 var MAX_HEALTH = 100.0;
 var CURRENT_HEALTH = 100.0;
@@ -22,6 +23,7 @@ var yellowLevel = ColorLevel.new()
 var blueLevel = ColorLevel.new()
 var redLevel = ColorLevel.new()
 
+@onready var pickup_range: CollisionShape2D = $PickupRadius/Range
 @onready var light_rotate: Node2D = $LightRotate
 var DamageParticleScene = preload("res://player_particles.tscn")
 var ExplosivePlayerScene = preload("res://explosive_player.tscn")
@@ -35,11 +37,18 @@ func LevelUp() -> String:
 	var feature_index = rng.randi_range(0, 1)
 	
 	var rand_for_speed = rng.randi_range(0,5)
+	var rand_for_pickup = rng.randi_range(0,5)
 	
 	if rand_for_speed == 5:
 		speed += 50
 		print("+ Speed!")
 		return "+Speed!"
+	
+	if rand_for_pickup == 5:
+		pickup += 25
+		print("+ Pickup Range!")
+		pickup_range.shape.radius = pickup; 
+		return "+Pickup Range!"
 	
 	
 	var result_text : String = ""
@@ -78,7 +87,7 @@ func _ready() -> void:
 	light_colour = LightColour.BLUE
 	$LightRotate/LineCone/LightColor.color = GameColours.BLUE
 	$Inside.modulate = GameColours.BLUE
-	$LightRotate/LineCone/LightColor.color.a = 0.5
+	$LightRotate/LineCone/LightColor.color.a = 0.2
 	$LightRotate/LineCone.generate_cone(blueLevel)
 	self.add_to_group("Player")
 
@@ -145,7 +154,7 @@ func _physics_process(delta: float) -> void:
 			$Inside.modulate = Color.RED
 			$LightRotate/LineCone.generate_cone(redLevel)
 			
-	$LightRotate/LineCone/LightColor.color.a = 0.5
+	$LightRotate/LineCone/LightColor.color.a = 0.2
 	velocity = direction * speed;
 
 	move_and_slide()
@@ -187,3 +196,7 @@ func spawn_explosive_player() -> void:
 	var explosion = ExplosivePlayerScene.instantiate()
 	explosion.global_position = global_position
 	get_tree().current_scene.add_child(explosion)
+
+
+func _on_pickup_radius_body_entered(body: Node2D) -> void:
+	body.get_parent().target = self; #based on layers this should only be items.
