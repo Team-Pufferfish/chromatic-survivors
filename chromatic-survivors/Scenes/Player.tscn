@@ -71,4 +71,5 @@ texture = ExtResource("5_nn08x")
 
 [node name="PickupFxPlayer" type="AudioStreamPlayer2D" parent="."]
 max_polyphony = 5
+
 [connection signal="area_entered" from="PickupRadius" to="." method="_on_pickup_radius_body_entered"]

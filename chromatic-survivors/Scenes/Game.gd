@@ -32,6 +32,7 @@ func _on_player_player_is_dead() -> void:
 	totals.show()
 
 func _on_loot_get(colour: LightColour) -> void:
+	$CoinCollectPlayer.play()
 	if(colour == LightColour.RED):
 		red_loot += 1
 	if(colour == LightColour.BLUE):
@@ -64,4 +65,5 @@ func _process(delta: float) -> void:
 	
 func _on_heal_player() -> void:
 	if (is_instance_valid(player)):
-		player.CURRENT_HEALTH = min(player.CURRENT_HEALTH + 20, player.MAX_HEALTH)
+		$HealCollectPlayer.play()
+		player.CURRENT_HEALTH = player.MAX_HEALTH
