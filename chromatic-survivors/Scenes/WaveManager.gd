@@ -37,7 +37,7 @@ func setup_waves():
 			"max_enemies": 25,
 			"enemies": [
 				{ "type": EnemyType.SQUARE, "red": 10, "yellow": 0, "blue": 0, "speed": 100, "chance": 0.3 },
-				{ "type": EnemyType.SQUARE, "red": 0,  "yellow": 15, "blue": 0, "speed": 75, "chance": 0.7 },
+				{"type": EnemyType.SQUARE,  "red": 0,  "yellow": 0, "blue": 10, "speed": 50, "chance": 0.5 }
 			]
 		},
 		{#primary -3
@@ -49,84 +49,65 @@ func setup_waves():
 				{"type": EnemyType.SQUARE,  "red": 0,  "yellow": 0, "blue": 10, "speed": 50, "chance": 0.5 }
 			]
 		},
-		{#green? -4
+		{#star
 			"spawn_rate": 1,
 			"max_enemies": 35,
+			"boss": { "type": EnemyType.STAR, "red": 0, "yellow": 25, "blue": 0, "speed": 75, "chance": 1.0 },
 			"enemies": [
-					{"type": EnemyType.SQUARE, "red": 0,  "yellow": 15, "blue": 10, "speed": 62, "chance": 1.0 },
-			]
-		},
-		{#star intro -5
-			"spawn_rate": 1,
-			"max_enemies": 40,
-			"boss": { "type": EnemyType.STAR, "red": 0, "yellow": 15, "blue": 0, "speed": 100, "chance": 1.0 },
-			"enemies": [
-				{"type": EnemyType.SQUARE,  "red": 0, "yellow": 15, "blue": 0, "speed": 75, "chance": 0.7 },
-				{"type": EnemyType.SQUARE, "red": 0,  "yellow": 0, "blue": 10, "speed": 50, "chance": 0.3 },
+				{"type": EnemyType.SQUARE,  "red": 10, "yellow": 0, "blue": 0, "speed": 100, "chance": 0.25 },
+				{ "type": EnemyType.SQUARE, "red": 0,  "yellow": 15, "blue": 0, "speed": 75, "chance": 0.25 },
+				{"type": EnemyType.SQUARE,  "red": 0,  "yellow": 0, "blue": 10, "speed": 50, "chance": 0.5 }
 			]
 		},
 		{
-			"spawn_rate": 1, #red and purple -6
-			"max_enemies": 45,
+			"spawn_rate": 1,
+			"max_enemies": 40,
 			"boss": { "type": EnemyType.STAR, "red": 20, "yellow": 0, "blue": 0, "speed": 100, "chance": 1.0 },
 			"enemies": [
 				{"type": EnemyType.SQUARE,  "red": 10, "yellow": 0, "blue": 0, "speed": 100, "chance": 0.25 },
-				{"type": EnemyType.SQUARE,  "red": 10, "yellow": 0, "blue": 10, "speed": 75, "chance": 0.50 },
-				{"type": EnemyType.SQUARE,  "red": 0, "yellow": 0, "blue": 10, "speed": 50, "chance": 0.25 },
+				{ "type": EnemyType.SQUARE, "red": 0,  "yellow": 15, "blue": 0, "speed": 75, "chance": 0.25 },
+				{"type": EnemyType.SQUARE,  "red": 0,  "yellow": 0, "blue": 10, "speed": 50, "chance": 0.25 },
+				{ "type": EnemyType.STAR, "red": 0, "yellow": 15, "blue": 0, "speed": 75, "chance": 0.25 }
 			]
 		},
-		{#bees?!? -7
+		{#bluestar
+			"spawn_rate": 1,
+			"max_enemies": 45,
+			"boss": { "type": EnemyType.STAR, "red": 0, "yellow": 0, "blue": 20, "speed": 50, "chance": 1.0 },
+			"enemies": [
+				{"type": EnemyType.SQUARE,  "red": 10, "yellow": 0, "blue": 0, "speed": 100, "chance": 0.25 },
+				{ "type": EnemyType.SQUARE, "red": 0,  "yellow": 15, "blue": 0, "speed": 75, "chance": 0.25 },
+				{"type": EnemyType.SQUARE,  "red": 0,  "yellow": 0, "blue": 10, "speed": 50, "chance": 0.25 },
+				{ "type": EnemyType.STAR, "red": 0, "yellow": 15, "blue": 0, "speed": 75, "chance": 0.125 },
+				{ "type": EnemyType.STAR, "red": 10, "yellow": 0, "blue": 0, "speed": 100, "chance": 0.125 },
+			]
+		},
+		{#yellowhex
+			"spawn_rate": 1,
+			"max_enemies": 50,
+			"boss": { "type": EnemyType.HEX, "red": 0, "yellow": 25, "blue": 0, "speed": 75, "chance": 1.0 },
+			"enemies": [
+				{"type": EnemyType.SQUARE,  "red": 10, "yellow": 0, "blue": 0, "speed": 100, "chance": 0.25 },
+				{ "type": EnemyType.SQUARE, "red": 0,  "yellow": 15, "blue": 0, "speed": 75, "chance": 0.25 },
+				{"type": EnemyType.SQUARE,  "red": 0,  "yellow": 0, "blue": 10, "speed": 50, "chance": 0.25 },
+				{ "type": EnemyType.STAR, "red": 0, "yellow": 15, "blue": 0, "speed": 75, "chance": 0.1 },
+				{ "type": EnemyType.STAR, "red": 10, "yellow": 0, "blue": 0, "speed": 100, "chance": 0.1 },
+				{ "type": EnemyType.STAR, "red": 0, "yellow": 0, "blue": 10, "speed": 50, "chance": 0.05 },
+			]
+		},
+		{#hexilation
 			"spawn_rate": 1,
 			"max_enemies": 55,
 			"enemies": [
-				{"type": EnemyType.SQUARE, "red": 0, "yellow": 0, "blue": 10, "speed": 50, "chance": 0.5 },
-				{ "type": EnemyType.HEX,"red": 0,  "yellow": 20, "blue": 0, "speed": 75, "chance": 0.5 }
-			]
-		},
-		{#three colour + star - 8
-			"spawn_rate": 1.0,
-			"max_enemies": 60,
-			"boss": { "type": EnemyType.STAR, "red": 10, "yellow": 15, "blue": 10, "speed": 75, "chance": 1.0 },
-			"enemies": [
-				{"type": EnemyType.SQUARE, "red": 10, "yellow": 0, "blue": 0, "speed": 100, "chance": 0.3 },
-				{"type": EnemyType.SQUARE, "red": 0,  "yellow": 15, "blue": 0, "speed": 75, "chance": 0.3 },
-				{ "type": EnemyType.SQUARE,"red": 0,  "yellow": 0, "blue": 10, "speed": 50, "chance": 0.3 }
-			]
-		},
-		{#two colour team
-			"spawn_rate": 1.0,
-			"max_enemies": 60,
-			"enemies": [
-				{"type": EnemyType.SQUARE, "red": 10, "yellow": 15, "blue": 0, "speed": 86, "chance": 0.3 },
-				{"type": EnemyType.SQUARE, "red": 0,  "yellow": 15, "blue": 10, "speed": 67, "chance": 0.3 },
-				{ "type": EnemyType.SQUARE,"red": 10,  "yellow": 0, "blue": 10, "speed": 75, "chance": 0.3 }
-			]
-		},
-		{#SHEILD HELL - 10
-			"spawn_rate": 1.0,
-			"max_enemies": 65,
-			"enemies": [
-				{"type": EnemyType.SHEILD, "red": 10, "yellow": 0, "blue": 0, "speed": 100, "chance": 0.3 },
-				{"type": EnemyType.SHEILD, "red": 0,  "yellow": 15, "blue": 0, "speed": 75, "chance": 0.3 },
-				{"type": EnemyType.SHEILD, "red": 0,  "yellow": 0, "blue": 10, "speed": 50, "chance": 0.3 }
-			]
-		},
-		{#HEX HELL
-			"spawn_rate": 1.0,
-			"max_enemies": 65,
-			"enemies": [
-				{"type": EnemyType.HEX, "red": 10, "yellow": 0, "blue": 0, "speed": 100, "chance": 0.3 },
-				{"type": EnemyType.HEX, "red": 0,  "yellow": 15, "blue": 0, "speed": 75, "chance": 0.3 },
-				{"type": EnemyType.HEX, "red": 0,  "yellow": 0, "blue": 10, "speed": 50, "chance": 0.3 }
-			]
-		},
-		{#STAR HELL
-			"spawn_rate": 1.0,
-			"max_enemies": 65,
-			"enemies": [
-				{"type": EnemyType.STAR, "red": 10, "yellow": 0, "blue": 0, "speed": 100, "chance": 0.3 },
-				{"type": EnemyType.STAR, "red": 0,  "yellow": 15, "blue": 0, "speed": 75, "chance": 0.3 },
-				{"type": EnemyType.STAR, "red": 0,  "yellow": 0, "blue": 10, "speed": 50, "chance": 0.3 }
+				{"type": EnemyType.SQUARE,  "red": 10, "yellow": 0, "blue": 0, "speed": 100, "chance": 0.2 },
+				{ "type": EnemyType.SQUARE, "red": 0,  "yellow": 15, "blue": 0, "speed": 75, "chance": 0.2 },
+				{"type": EnemyType.SQUARE,  "red": 0,  "yellow": 0, "blue": 10, "speed": 50, "chance": 0.2 },
+				{ "type": EnemyType.STAR, "red": 0, "yellow": 15, "blue": 0, "speed": 75, "chance": 0.01 },
+				{ "type": EnemyType.STAR, "red": 10, "yellow": 0, "blue": 0, "speed": 100, "chance": 0.1 },
+				{ "type": EnemyType.STAR, "red": 0, "yellow": 0, "blue": 10, "speed": 50, "chance": 0.05 },
+				{ "type": EnemyType.HEX, "red": 10, "yellow": 0, "blue": 0, "speed": 100, "chance": 0.05 },
+				{ "type": EnemyType.HEX, "red": 0, "yellow": 15, "blue": 0, "speed": 75, "chance": 0.05 },
+				{ "type": EnemyType.HEX, "red": 0, "yellow": 0, "blue": 10, "speed": 50, "chance": 0.05 },
 			]
 		},
 		{#send in everything

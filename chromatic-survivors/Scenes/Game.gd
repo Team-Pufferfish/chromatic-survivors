@@ -20,7 +20,7 @@ var total_loot = 0;
 var time_elapsed := 0.0
 @onready var time_label: Label = $CanvasLayer/TimeLabel  # Add a label in your scene to show the time
 
-var next_level_required = 5;
+var next_level_required = 10;
 var last_level = 0
 
 func _ready() -> void:
@@ -48,7 +48,7 @@ func _on_loot_get(colour: LightColour) -> void:
 	if(total_loot >= next_level_required):
 		print("Level up :" + str(total_loot) + "/" + str(next_level_required))
 		last_level = next_level_required
-		next_level_required = next_level_required + next_level_required * 1.2
+		next_level_required = next_level_required + 10
 		level_bar.max_value = next_level_required - last_level
 		level_bar.value = total_loot - last_level
 		var level_up_bonus = player.LevelUp()
