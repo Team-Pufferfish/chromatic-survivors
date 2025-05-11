@@ -85,11 +85,11 @@ func deal_damage(colour: int, amount: int, source_direction: Vector2 = Vector2.Z
 
 func maybe_spawn_loot(colour:int):
 	var loot_chance = randi()
-	if loot_chance % 50 == 0:  # 2% chance
+	if loot_chance % 40 == 0:  # 2% chance
 		var collect = COLLECTOR.instantiate()
 		collect.global_position = global_position
 		get_tree().current_scene.add_child(collect)
-	elif loot_chance % 25 == 0:
+	elif loot_chance % 15 == 0:
 		var health = HEALTH.instantiate()
 		health.global_position = global_position
 		get_tree().current_scene.add_child(health)

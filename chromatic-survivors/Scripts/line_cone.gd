@@ -8,6 +8,8 @@ func generate_cone(details : ColorLevel):
 	var slice_angle = TAU * slice_fraction
 	var angle_offset = -slice_angle / 2.0  # Offset so slice is centered around angle 0 (positive X)
 
+	details.segments = min(details.segments, segments_total)
+
 	if details.segments < segments_total:
 		points.append(Vector2(0, 0))  # Center point for pie slice
 

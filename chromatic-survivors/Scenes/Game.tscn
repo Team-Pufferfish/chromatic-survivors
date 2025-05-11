@@ -1,7 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://cghqp7uq7cafd"]
+[gd_scene load_steps=18 format=3 uid="uid://cghqp7uq7cafd"]
 
 [ext_resource type="Script" uid="uid://coufwmh2hi3vs" path="res://Scenes/Game.gd" id="1_71axn"]
-[ext_resource type="Script" uid="uid://2kbyp3mou55n" path="res://Scenes/fps.gd" id="1_b2bpf"]
+[ext_resource type="Script" path="res://Scenes/fps.gd" id="1_b2bpf"]
 [ext_resource type="PackedScene" uid="uid://ch76b74jwc7xw" path="res://Scenes/Player.tscn" id="1_iukft"]
 [ext_resource type="Script" uid="uid://ctrm27h3oaxdc" path="res://Scripts/camera_2d.gd" id="3_2irst"]
 [ext_resource type="Script" uid="uid://5y7vuqdkncdp" path="res://Scripts/level_bonus.gd" id="3_bf53h"]
@@ -10,6 +10,9 @@
 [ext_resource type="Script" uid="uid://bp5tj7s8xl07c" path="res://Scripts/GridDrawer.gd" id="10_71axn"]
 [ext_resource type="Shader" uid="uid://5smg703hdxjb" path="res://Scenes/CRT.gdshader" id="13_3cx6b"]
 [ext_resource type="AudioStream" uid="uid://dcpufkyegrn25" path="res://Sounds/explosionCrunch_001.ogg" id="14_wxwew"]
+[ext_resource type="AudioStream" uid="uid://bvqtiv404hvjv" path="res://Sounds/coin1.ogg" id="15_acvyw"]
+[ext_resource type="AudioStream" uid="uid://jk7wvovxmw27" path="res://Sounds/heal-pickup.ogg" id="16_alh3a"]
+[ext_resource type="AudioStream" uid="uid://dlh407elv4lxk" path="res://Sounds/8-bit-arcade-mode-158814.mp3" id="17_4q8tf"]
 
 [sub_resource type="Environment" id="Environment_71axn"]
 background_mode = 3
@@ -212,7 +215,21 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GameOverExplosionPlayer" type="AudioStreamPlayer2D" parent="."]
+[node name="GameOverExplosionPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_wxwew")
+
+[node name="CoinCollectPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_acvyw")
+volume_db = -2.43
+
+[node name="HealCollectPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_alh3a")
+volume_db = -2.43
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_4q8tf")
+volume_db = -7.856
+autoplay = true
+parameters/looping = true
 
 [connection signal="player_is_dead" from="Player" to="." method="_on_player_player_is_dead"]

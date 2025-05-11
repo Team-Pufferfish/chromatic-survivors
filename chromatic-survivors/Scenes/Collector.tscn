@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c03u5584dgyxm"]
+[gd_scene load_steps=5 format=3 uid="uid://c03u5584dgyxm"]
 
 [ext_resource type="Script" uid="uid://ccnga0e71tkcq" path="res://Scripts/Collector.gd" id="1_ttxwa"]
 [ext_resource type="Texture2D" uid="uid://dw3po76hub1o" path="res://Scripts/diamond-svgrepo-com.svg" id="2_ttxwa"]
+[ext_resource type="AudioStream" uid="uid://b0kdh4uv88hyi" path="res://Sounds/diamond-pickup.ogg" id="3_iqkts"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3so38"]
 radius = 12.0
@@ -20,4 +21,8 @@ collision_layer = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_3so38")
 
+[node name="PickupPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_iqkts")
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="finished" from="PickupPlayer" to="." method="_on_pickup_player_finished"]
