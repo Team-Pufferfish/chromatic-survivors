@@ -14,7 +14,7 @@ func _on_spawn_timer_timeout():
 func spawn_thing():
 	var instance = thing_to_spawn.instantiate()
 	
-	instance.speed = hex_guy.speed + 25
+	instance.speed = hex_guy.speed * 1.5
 	instance.CURRENT_BLUE = get_parent().CURRENT_BLUE / divider;
 	instance.CURRENT_RED = get_parent().CURRENT_RED / divider;
 	instance.CURRENT_YELLOW = get_parent().CURRENT_YELLOW / divider;

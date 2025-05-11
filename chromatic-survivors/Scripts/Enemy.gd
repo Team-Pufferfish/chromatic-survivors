@@ -45,7 +45,7 @@ func playDamageSound():
 	var chosen_stream = damageSounds[randi() % damageSounds.size()]
 	sfx_player.stream = chosen_stream
 	sfx_player.pitch_scale = randf_range(0.9, 1.1)
-	sfx_player.volume_db = randf_range(-2, 0)
+	sfx_player.volume_db = randf_range(1, 5)
 	sfx_player.play()
 	
 func stopDamageSound():

@@ -70,7 +70,7 @@ func LevelUp() -> String:
 		return "+Speed!"
 	
 	if rand_for_pickup == 5:
-		pickup += 10
+		pickup *= 1.5
 		print("+ Pickup Range!")
 		pickup_range.shape.radius = pickup; 
 		return "+Pickup Range!"
@@ -96,7 +96,7 @@ func LevelUp() -> String:
 		
 	if feature_index == 0 or colorSelected.segments == 24:
 		result_text += "+ Distance!"
-		colorSelected.radius += 100
+		colorSelected.radius += 75
 	if feature_index == 1:
 		result_text += "+ Width!"
 		colorSelected.segments += 2
