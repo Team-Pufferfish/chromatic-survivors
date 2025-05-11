@@ -10,6 +10,16 @@ const LootScene = preload("res://Scenes/loot.tscn")
 const COLLECTOR = preload("res://Scenes/Collector.tscn")
 const HEALTH = preload("res://Scenes/Health.tscn")
 
+@onready var sfx_player = $FxPlayer  # Or AudioStreamPlayer2D
+
+@export var damageSounds: Array[AudioStream] = [
+	preload("res://Sounds/enemy-burn-sounds/thrusterFire_000.ogg"),
+	preload("res://Sounds/enemy-burn-sounds/thrusterFire_001.ogg"),
+	preload("res://Sounds/enemy-burn-sounds/thrusterFire_002.ogg"),
+	preload("res://Sounds/enemy-burn-sounds/thrusterFire_003.ogg"),
+	preload("res://Sounds/enemy-burn-sounds/thrusterFire_004.ogg")
+]
+
 @export var speed : int = 75
 
 @export var MAX_BLUE : float 
@@ -23,6 +33,20 @@ const HEALTH = preload("res://Scenes/Health.tscn")
 
 @export var MAX_YELLOW : float 
 @export var CURRENT_YELLOW : float 
+
+func playDamageSound():
+	if sfx_player.playing:
+		return  # Already playing, skip
+
+	var chosen_stream = damageSounds[randi() % damageSounds.size()]
+	sfx_player.stream = chosen_stream
+	sfx_player.pitch_scale = randf_range(0.9, 1.1)
+	sfx_player.volume_db = randf_range(-2, 0)
+	sfx_player.play()
+	
+func stopDamageSound():
+	if sfx_player.playing:
+		sfx_player.stop()
 
 func _physics_process(_delta: float) -> void:
 	if is_instance_valid(player):
@@ -50,6 +74,9 @@ func deal_damage(colour: int, amount: int, source_direction: Vector2 = Vector2.Z
 
 	if damaged and source_direction != Vector2.ZERO:
 		trigger_damage_particles(source_direction, colour)
+		playDamageSound()
+	else:
+		stopDamageSound()
 	
 	if CURRENT_RED <= 0 and CURRENT_BLUE <= 0 and CURRENT_YELLOW <= 0:
 		spawn_explosion(colour)

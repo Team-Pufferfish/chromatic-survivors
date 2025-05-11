@@ -20,3 +20,5 @@ red_value = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_1f0kj")
+
+[node name="FxPlayer" type="AudioStreamPlayer2D" parent="."]

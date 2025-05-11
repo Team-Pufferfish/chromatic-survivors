@@ -1,7 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://cghqp7uq7cafd"]
+[gd_scene load_steps=19 format=3 uid="uid://cghqp7uq7cafd"]
 
 [ext_resource type="Script" uid="uid://coufwmh2hi3vs" path="res://Scenes/Game.gd" id="1_71axn"]
-[ext_resource type="Script" uid="uid://2kbyp3mou55n" path="res://Scenes/fps.gd" id="1_b2bpf"]
+[ext_resource type="Script" path="res://Scenes/fps.gd" id="1_b2bpf"]
 [ext_resource type="PackedScene" uid="uid://ch76b74jwc7xw" path="res://Scenes/Player.tscn" id="1_iukft"]
 [ext_resource type="Script" uid="uid://ctrm27h3oaxdc" path="res://Scripts/camera_2d.gd" id="3_2irst"]
 [ext_resource type="Script" uid="uid://5y7vuqdkncdp" path="res://Scripts/level_bonus.gd" id="3_bf53h"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://blo4tyvs8qm1g" path="res://Scenes/enemy.tscn" id="11_3so38"]
 [ext_resource type="PackedScene" uid="uid://b6uinoixj8o8u" path="res://Scenes/StarGuy.tscn" id="12_3cx6b"]
 [ext_resource type="Shader" uid="uid://5smg703hdxjb" path="res://Scenes/CRT.gdshader" id="13_3cx6b"]
+[ext_resource type="AudioStream" uid="uid://dcpufkyegrn25" path="res://Sounds/explosionCrunch_001.ogg" id="14_wxwew"]
 
 [sub_resource type="Environment" id="Environment_71axn"]
 background_mode = 3
@@ -223,5 +224,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="GameOverExplosionPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_wxwew")
 
 [connection signal="player_is_dead" from="Player" to="." method="_on_player_player_is_dead"]

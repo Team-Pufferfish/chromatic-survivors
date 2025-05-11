@@ -27,6 +27,7 @@ func _ready() -> void:
 	level_bar.max_value = next_level_required
 
 func _on_player_player_is_dead() -> void:
+	$GameOverExplosionPlayer.play()
 	game_over.show()
 	totals.show()
 
