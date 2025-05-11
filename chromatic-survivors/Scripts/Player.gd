@@ -22,9 +22,34 @@ var yellowLevel = ColorLevel.new()
 var blueLevel = ColorLevel.new()
 var redLevel = ColorLevel.new()
 
+@onready var damage_fx_player = $DamageFxPlayer  # Or AudioStreamPlayer2D
+
+@export var damageSounds: Array[AudioStream] = [
+	preload("res://Sounds/player-damaged-sounds/spaceEngineLarge_000.ogg"),
+	preload("res://Sounds/player-damaged-sounds/spaceEngineLarge_001.ogg"),
+	preload("res://Sounds/player-damaged-sounds/spaceEngineLarge_002.ogg"),
+	preload("res://Sounds/player-damaged-sounds/spaceEngineLarge_003.ogg"),
+	preload("res://Sounds/player-damaged-sounds/spaceEngineLarge_004.ogg")
+]
+
 @onready var light_rotate: Node2D = $LightRotate
 var DamageParticleScene = preload("res://player_particles.tscn")
 var ExplosivePlayerScene = preload("res://explosive_player.tscn")
+
+func playDamageSound():
+	if damage_fx_player.playing:
+		return  # Already playing, skip
+
+	var chosen_stream = damageSounds[randi() % damageSounds.size()]
+	damage_fx_player.stream = chosen_stream
+	damage_fx_player.pitch_scale = randf_range(0.9, 1.1)
+	damage_fx_player.volume_db = randf_range(-2, 0)
+	damage_fx_player.play()
+	
+func stopDamageSound():
+	if damage_fx_player.playing:
+		damage_fx_player.stop()
+
 
 func LevelUp() -> String:
 	var rng = RandomNumberGenerator.new()
@@ -154,9 +179,12 @@ func _physics_process(delta: float) -> void:
 	if enemies_colliding.size() > 0:
 		CURRENT_HEALTH -= damage_rate * delta * enemies_colliding.size()
 		CURRENT_HEALTH = max(CURRENT_HEALTH, 0)
-		
+		playDamageSound()
 		# Trigger white damage particles
 		spawn_damage_particles()
+		
+	else:
+		stopDamageSound()
 	$Inside.scale = Vector2(CURRENT_HEALTH / MAX_HEALTH * 0.06,CURRENT_HEALTH / MAX_HEALTH * 0.06)
 		
 	if CURRENT_HEALTH <= 0:

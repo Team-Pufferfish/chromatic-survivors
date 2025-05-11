@@ -55,3 +55,8 @@ texture = ExtResource("4_5ixxa")
 modulate = Color(0, 0.0431373, 1, 1)
 scale = Vector2(0.06, 0.06)
 texture = ExtResource("5_nn08x")
+
+[node name="DamageFxPlayer" type="AudioStreamPlayer2D" parent="."]
+
+[node name="PickupFxPlayer" type="AudioStreamPlayer2D" parent="."]
+max_polyphony = 5
