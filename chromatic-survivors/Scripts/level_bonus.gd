@@ -1,6 +1,6 @@
 extends Label
 
-@export var fade_duration := 2.5  # seconds
+@export var fade_duration := 5  # seconds
 
 var fade_timer := 0.0
 var fading := false
