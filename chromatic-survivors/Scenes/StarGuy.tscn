@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dm700m5ubkkes" path="res://Scripts/Enemy.gd" id="1_b3olx"]
 [ext_resource type="Script" uid="uid://bi2twiavnl5ff" path="res://Scripts/Aura.gd" id="2_v6oq8"]
 [ext_resource type="Texture2D" uid="uid://cdyauh4n8g1cp" path="res://star-svgrepo-com.svg" id="4_flado"]
-[ext_resource type="Script" path="res://Scripts/sprite_color_mapper.gd" id="4_v6oq8"]
+[ext_resource type="Script" uid="uid://cyheouhoxpma" path="res://Scripts/sprite_color_mapper.gd" id="4_v6oq8"]
 [ext_resource type="Texture2D" uid="uid://dfcxefeym47u2" path="res://star-svgrepo-com-2.svg" id="5_ek1ud"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mtws3"]
