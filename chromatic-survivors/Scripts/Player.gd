@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 enum LightColour {RED, BLUE, YELLOW}
 
-@export var speed : int = 300
+@export var speed : int = 150
 @export var brake : int = 15
 @export var pickup : int = 50
 
@@ -70,7 +70,7 @@ func LevelUp() -> String:
 		return "+Speed!"
 	
 	if rand_for_pickup == 5:
-		pickup += 25
+		pickup += 10
 		print("+ Pickup Range!")
 		pickup_range.shape.radius = pickup; 
 		return "+Pickup Range!"

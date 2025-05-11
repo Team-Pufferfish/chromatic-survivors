@@ -9,7 +9,7 @@
 radius = 32.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nn08x"]
-radius = 102.64
+radius = 50.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5ixxa"]
 radius = 33.0
@@ -17,8 +17,7 @@ radius = 33.0
 [node name="Player" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_kyqiw")
-speed = 150
-pickup = 200
+pickup = 35
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_dewec")
@@ -71,4 +70,5 @@ texture = ExtResource("5_nn08x")
 
 [node name="PickupFxPlayer" type="AudioStreamPlayer2D" parent="."]
 max_polyphony = 5
+
 [connection signal="area_entered" from="PickupRadius" to="." method="_on_pickup_radius_body_entered"]
