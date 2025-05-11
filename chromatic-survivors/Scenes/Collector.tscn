@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dw3po76hub1o" path="res://Scripts/diamond-svgrepo-com.svg" id="2_ttxwa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3so38"]
-radius = 6.0
+radius = 12.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rg653"]
 radius = 45.0
@@ -14,7 +14,7 @@ script = ExtResource("1_ttxwa")
 
 [node name="Diamond" type="Sprite2D" parent="."]
 position = Vector2(0, 1)
-scale = Vector2(0.015, 0.015)
+scale = Vector2(0.03, 0.03)
 texture = ExtResource("2_ttxwa")
 
 [node name="Area2D" type="Area2D" parent="."]
